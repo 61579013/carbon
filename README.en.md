@@ -157,17 +157,17 @@ carbon.Parse("2020-08-05 13:14:15").SetSecond(60).ToDateTimeString() // 2020-08-
 // Start of the year
 carbon.Parse("2020-08-05 13:14:15").StartOfYear().ToDateTimeString() // 2020-01-01 00:00:00
 // End of the year
-carbon.Parse("2020-08-05 13:14:15").EndOfYear().ToEndTimeString() // 2020-12-31 23:59:59
+carbon.Parse("2020-08-05 13:14:15").EndOfYear().ToDateTimeString() // 2020-12-31 23:59:59
 
 // Start of the month
 carbon.Parse("2020-08-05 13:14:15").StartOfMonth().ToStartTimeString() // 2020-08-01 00:00:00
 // End of the month
-carbon.Parse("2020-08-05 13:14:15").EndOfMonth().ToEndTimeString() // 2020-08-31 23:59:59
+carbon.Parse("2020-08-05 13:14:15").EndOfMonth().ToDateTimeString() // 2020-08-31 23:59:59
 
 // Start of the week
-carbon.Parse("2020-08-05 13:14:15").StartOfWeek().ToStartTimeString() // 2020-08-03 00:00:00
+carbon.Parse("2020-08-05 13:14:15").StartOfWeek().ToDateTimeString() // 2020-08-03 00:00:00
 // End of the week
-carbon.Parse("2020-08-05 13:14:15").LastOfWeek().ToEndTimeString() // 2020-08-09 23:59:59
+carbon.Parse("2020-08-05 13:14:15").LastOfWeek().ToDateTimeString() // 2020-08-09 23:59:59
 
 // Start of the day
 carbon.Parse("2020-08-05 13:14:15").StartOfDay().ToDateTimeString() // 2020-08-05 00:00:00
@@ -584,8 +584,8 @@ user := UserModel {
 user.ID // 18
 user.Name // 勾国印
 user.Birthday.ToDateString() // 2012-08-05
-user.CreatedAt.ToTimestamp() // 2012-08-05 13:14:15
-user.DeletedAt.ToDateTimeString() // 1596604455
+user.CreatedAt.ToTimestamp() // 1596604455 
+user.DeletedAt.ToDateTimeString() // 2012-08-05 13:14:15
 user.GraduatedAt.AddDay().ToDateString() // 2012-09-10
 user.UpdatedAt.ToDateString() // 2012-08-05
 ```
