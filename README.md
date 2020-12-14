@@ -1,9 +1,9 @@
 # Carbon  #
-中文 | [英文](./README.en.md)
+中文 | [English](./README.en.md)
 
-carbon 是一个轻量级、语义化、对开发者友好的Golang时间处理库，支持链式调用和gorm、xorm等主流orm
+carbon 是一个轻量级、语义化、对开发者友好的 Golang 时间处理库，支持链式调用和 gorm、xorm 等主流 orm。
 
-如果您觉得不错，请给个star吧
+如果您觉得不错，请给个 star 吧
 
 github:[github.com/golang-module/carbon](https://github.com/golang-module/carbon "github.com/golang-module/carbon")
 
@@ -11,14 +11,14 @@ gitee:[gitee.com/go-package/carbon](https://gitee.com/go-package/carbon "gitee.c
 
 #### 安装使用
 ```go
-// 使用github库
+// 使用 github 库
 go get -u github.com/golang-module/carbon
 
 import (
     "github.com/golang-module/carbon"
 )
 
-// 使用gitee库
+// 使用 gitee 库
 go get -u gitee.com/go-package/carbon
 
 import (
@@ -27,7 +27,7 @@ import (
 ```
 
 #### 用法示例
-> 默认时区为Local，即服务器所在时区，假设当前时间为2020-08-05 13:14:15
+> 默认时区为 Local，即服务器所在时区，假设当前时间为 2020-08-05 13:14:15
 
 ##### 昨天、今天、明天
 ```go
@@ -80,24 +80,24 @@ carbon.Tomorrow().ToTimestampWithMicrosecond() // 1596690855000000
 carbon.Tomorrow().ToTimestampWithNanosecond() // 1596690855000000000
 ```
 
-##### 创建Carbon实例
+##### 创建 Carbon 实例
 ```go
-// 从秒级时间戳创建Carbon实例
+// 从秒级时间戳创建 Carbon 实例
 carbon.CreateFromTimestamp(1596604455).ToDateTimeString() // 2020-08-05 13:14:15
-// 从毫秒级时间戳创建Carbon实例
+// 从毫秒级时间戳创建 Carbon 实例
 carbon.CreateFromTimestamp(1596604455000).ToDateTimeString() // 2020-08-05 13:14:15
-// 从微秒级时间戳创建Carbon实例
+// 从微秒级时间戳创建 Carbon 实例
 carbon.CreateFromTimestamp(1596604455000000).ToDateTimeString() // 2020-08-05 13:14:15
-// 从纳级时间戳创建Carbon实例
+// 从纳级时间戳创建 Carbon 实例
 carbon.CreateFromTimestamp(1596604455000000000).ToDateTimeString() // 2020-08-05 13:14:15
 
-// 从年月日时分秒创建Carbon实例
+// 从年月日时分秒创建 Carbon 实例
 carbon.CreateFromDateTime(2020, 8, 5, 13, 14, 15).ToDateTimeString() // 2020-08-05 13:14:15
-// 从年月日创建Carbon实例(时分秒默认为当前时分秒)
+// 从年月日创建 Carbon 实例(时分秒默认为当前时分秒)
 carbon.CreateFromDate(2020, 8, 5).ToDateTimeString() // 2020-08-05 13:14:15
-// 从时分秒创建Carbon实例(年月日默认为当前年月日)
+// 从时分秒创建 Carbon 实例(年月日默认为当前年月日)
 carbon.CreateFromTime(13, 14, 15).ToDateTimeString() // 2020-08-05 13:14:15
-// 从原生time.Time创建Carbon实例
+// 从原生 time.Time 创建 Carbon 实例
 carbon.CreateFromGoTime(time.Now()).ToTimestamp() // 1596604455
 ```
 
@@ -563,7 +563,9 @@ carbon.Parse("2020-08-01 13:14:15").DaysInMonth() // 31
 // 获取本年第几天
 carbon.Parse("2020-08-05 13:14:15").DayOfYear() // 218
 // 获取本年第几周
+carbon.Parse("2019-12-31 13:14:15").WeekOfYear() // 1
 carbon.Parse("2020-08-05 13:14:15").WeekOfYear() // 32
+> 参考 [ ISO 8601 标准](https://baike.baidu.com/item/ISO%208601/3910715?fr=aladdin#3 " ISO 8601 标准")
 // 获取本月第几天
 carbon.Parse("2020-08-05 13:14:15").DayOfMonth() // 5
 // 获取本月第几周
@@ -630,7 +632,7 @@ carbon.Parse("2020-08-05 13:14:15").IsYearOfPig() // false
 ```
 
 ##### 数据库支持
-假设数据表为users，字段有id(int)、name(varchar)、age(int)、birthday(datetime)、graduated_at(datetime)、created_at(datetime)、updated_at(datetime)、date_time1(datetime)、date_time2(datetime)、date_time3(datetime)、date_time4(datetime)
+假设数据表为 users，字段有 id(int)、name(varchar)、age(int)、birthday(datetime)、graduated_at(datetime)、created_at(datetime)、updated_at(datetime)、date_time1(datetime)、date_time2(datetime)、date_time3(datetime)、date_time4(datetime)
 
 ###### 定义模型
 ```go
@@ -652,6 +654,7 @@ type UserModel struct {
 ###### 实例化模型
 ```go
 user := UserModel {
+    ID: 1153,
     Name: "勾国印",
     Age: 18,
     Birthday: carbon.ToDateTimeString{carbon.Now().SubYears(18)},
@@ -667,7 +670,7 @@ user := UserModel {
 
 ###### 输出模型字段
 ```go
-user.ID // 42
+user.ID // 1153
 user.Name // 勾国印
 user.Age // 18
 user.Birthday.ToDateTimeString() // 2012-08-05 13:14:15
@@ -686,7 +689,7 @@ data, _ := json.Marshal(&user)
 fmt.Print(string(data))
 // 输出
 {
-    "id": 42,
+    "id": 1153,
     "name": "勾国印",
     "age": 18,
     "birthday": "2012-08-05 13:14:15",
