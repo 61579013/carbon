@@ -19,7 +19,10 @@ func Now() Carbon {
 
 // Now 当前(指定时区)
 func (c Carbon) Now() Carbon {
-	return Carbon{Time: time.Now(), Loc: c.Loc}
+	return Carbon{
+		Time: time.Now(),
+		Loc:  c.Loc,
+	}
 }
 
 // Tomorrow 明天
@@ -29,7 +32,10 @@ func Tomorrow() Carbon {
 
 // Tomorrow 明天(指定时区)
 func (c Carbon) Tomorrow() Carbon {
-	return Carbon{Time: Tomorrow().Time, Loc: c.Loc}
+	return Carbon{
+		Time: Tomorrow().Time,
+		Loc:  c.Loc,
+	}
 }
 
 // Yesterday 昨天
@@ -73,44 +79,56 @@ func (c Carbon) CreateFromTimestamp(timestamp int64) Carbon {
 
 // CreateFromDateTime 从年月日时分秒创建Carbon实例
 func CreateFromDateTime(year int, month int, day int, hour int, minute int, second int) Carbon {
-	return newCarbon(time.Date(year, time.Month(month), day, hour, minute, second, 0, getLocalByTimezone(Local)))
+	return Carbon{Time: time.Date(year, time.Month(month), day, hour, minute, second, 0, getLocalByTimezone(Local))}
 }
 
 // CreateFromDateTime 从年月日时分秒创建Carbon实例(指定时区)
 func (c Carbon) CreateFromDateTime(year int, month int, day int, hour int, minute int, second int) Carbon {
-	return newCarbon(CreateFromDateTime(year, month, day, hour, minute, second).Time.In(c.Loc))
+	return Carbon{
+		Time: CreateFromDateTime(year, month, day, hour, minute, second).Time,
+		Loc:  c.Loc,
+	}
 }
 
 // CreateFromDate 从年月日创建Carbon实例
 func CreateFromDate(year int, month int, day int) Carbon {
 	hour, minute, second := time.Now().Clock()
-	return newCarbon(time.Date(year, time.Month(month), day, hour, minute, second, 0, getLocalByTimezone(Local)))
+	return Carbon{Time: time.Date(year, time.Month(month), day, hour, minute, second, 0, getLocalByTimezone(Local))}
 }
 
 // CreateFromDate 从年月日创建Carbon实例(指定时区)
 func (c Carbon) CreateFromDate(year int, month int, day int) Carbon {
-	return newCarbon(CreateFromDate(year, month, day).Time.In(c.Loc))
+	return Carbon{
+		Time: CreateFromDate(year, month, day).Time,
+		Loc:  c.Loc,
+	}
 }
 
 // CreateFromTime 从时分秒创建Carbon实例
 func CreateFromTime(hour int, minute int, second int) Carbon {
 	year, month, day := time.Now().Date()
-	return newCarbon(time.Date(year, month, day, hour, minute, second, 0, getLocalByTimezone(Local)))
+	return Carbon{Time: time.Date(year, month, day, hour, minute, second, 0, getLocalByTimezone(Local))}
 }
 
 // CreateFromTime 从时分秒创建Carbon实例(指定时区)
 func (c Carbon) CreateFromTime(hour int, minute int, second int) Carbon {
-	return newCarbon(CreateFromTime(hour, minute, second).Time.In(c.Loc))
+	return Carbon{
+		Time: CreateFromTime(hour, minute, second).Time,
+		Loc:  c.Loc,
+	}
 }
 
 // CreateFromGoTime 从原生time.Time创建Carbon实例
 func CreateFromGoTime(t time.Time) Carbon {
-	return newCarbon(t)
+	return Carbon{Time: t}
 }
 
 // CreateFromGoTime 从原生time.Time创建Carbon实例(指定时区)
 func (c Carbon) CreateFromGoTime(t time.Time) Carbon {
-	return newCarbon(CreateFromGoTime(t).Time.In(c.Loc))
+	return Carbon{
+		Time: t,
+		Loc:  c.Loc,
+	}
 }
 
 // Parse 解析标准格式时间字符串
