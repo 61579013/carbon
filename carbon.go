@@ -7,8 +7,9 @@ import (
 )
 
 type Carbon struct {
-	Time time.Time
-	Loc  *time.Location
+	Time  time.Time
+	Loc   *time.Location
+	Error error
 }
 
 // Now 当前
