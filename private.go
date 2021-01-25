@@ -29,7 +29,7 @@ func format2layout(format string) string {
 // newCarbon 创建一个新Carbon实例
 func newCarbon(t time.Time) Carbon {
 	loc, _ := time.LoadLocation(Local)
-	return Carbon{Time: t, loc: loc}
+	return Carbon{Time: t, Loc: loc}
 }
 
 // getLocalByTimezone 通过时区获取Location实例

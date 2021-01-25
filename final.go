@@ -49,7 +49,7 @@ func (c Carbon) ToFormatString(format string) string {
 	if c.Time.IsZero() {
 		return ""
 	}
-	return c.Time.In(c.loc).Format(format2layout(format))
+	return c.Time.In(c.Loc).Format(format2layout(format))
 }
 
 // ToDayDateTimeString 输出天数日期时间字符串
@@ -375,7 +375,7 @@ func (c Carbon) WeekOfMonth() int {
 
 // Timezone 获取时区
 func (c Carbon) Timezone() string {
-	return c.loc.String()
+	return c.Loc.String()
 }
 
 // Age 获取年龄
@@ -516,104 +516,104 @@ func (c Carbon) IsLeapYear() bool {
 
 // IsLongYear 是否是长年
 func (c Carbon) IsLongYear() bool {
-	t := time.Date(c.Year(), time.December, 31, 0, 0, 0, 0, c.loc)
+	t := time.Date(c.Year(), time.December, 31, 0, 0, 0, 0, c.Loc)
 	_, w := t.ISOWeek()
 	return w == weeksPerLongYear
 }
 
 // IsJanuary 是否是一月
 func (c Carbon) IsJanuary() bool {
-	return c.Time.In(c.loc).Month() == time.January
+	return c.Time.In(c.Loc).Month() == time.January
 }
 
 // IsMonday 是否是二月
 func (c Carbon) IsFebruary() bool {
-	return c.Time.In(c.loc).Month() == time.February
+	return c.Time.In(c.Loc).Month() == time.February
 }
 
 // IsMarch 是否是三月
 func (c Carbon) IsMarch() bool {
-	return c.Time.In(c.loc).Month() == time.March
+	return c.Time.In(c.Loc).Month() == time.March
 }
 
 // IsApril 是否是四月
 func (c Carbon) IsApril() bool {
-	return c.Time.In(c.loc).Month() == time.April
+	return c.Time.In(c.Loc).Month() == time.April
 }
 
 // IsMay 是否是五月
 func (c Carbon) IsMay() bool {
-	return c.Time.In(c.loc).Month() == time.May
+	return c.Time.In(c.Loc).Month() == time.May
 }
 
 // IsJune 是否是六月
 func (c Carbon) IsJune() bool {
-	return c.Time.In(c.loc).Month() == time.June
+	return c.Time.In(c.Loc).Month() == time.June
 }
 
 // IsJuly 是否是七月
 func (c Carbon) IsJuly() bool {
-	return c.Time.In(c.loc).Month() == time.July
+	return c.Time.In(c.Loc).Month() == time.July
 }
 
 // IsAugust 是否是八月
 func (c Carbon) IsAugust() bool {
-	return c.Time.In(c.loc).Month() == time.August
+	return c.Time.In(c.Loc).Month() == time.August
 }
 
 // IsSeptember 是否是九月
 func (c Carbon) IsSeptember() bool {
-	return c.Time.In(c.loc).Month() == time.September
+	return c.Time.In(c.Loc).Month() == time.September
 }
 
 // IsOctober 是否是十月
 func (c Carbon) IsOctober() bool {
-	return c.Time.In(c.loc).Month() == time.October
+	return c.Time.In(c.Loc).Month() == time.October
 }
 
 // IsNovember 是否是十一月
 func (c Carbon) IsNovember() bool {
-	return c.Time.In(c.loc).Month() == time.November
+	return c.Time.In(c.Loc).Month() == time.November
 }
 
 // IsDecember 是否是十二月
 func (c Carbon) IsDecember() bool {
-	return c.Time.In(c.loc).Month() == time.December
+	return c.Time.In(c.Loc).Month() == time.December
 }
 
 // IsMonday 是否是周一
 func (c Carbon) IsMonday() bool {
-	return c.Time.In(c.loc).Weekday() == time.Monday
+	return c.Time.In(c.Loc).Weekday() == time.Monday
 }
 
 // IsTuesday 是否是周二
 func (c Carbon) IsTuesday() bool {
-	return c.Time.In(c.loc).Weekday() == time.Tuesday
+	return c.Time.In(c.Loc).Weekday() == time.Tuesday
 }
 
 // IsWednesday 是否是周三
 func (c Carbon) IsWednesday() bool {
-	return c.Time.In(c.loc).Weekday() == time.Wednesday
+	return c.Time.In(c.Loc).Weekday() == time.Wednesday
 }
 
 // IsThursday 是否是周四
 func (c Carbon) IsThursday() bool {
-	return c.Time.In(c.loc).Weekday() == time.Thursday
+	return c.Time.In(c.Loc).Weekday() == time.Thursday
 }
 
 // IsFriday 是否是周五
 func (c Carbon) IsFriday() bool {
-	return c.Time.In(c.loc).Weekday() == time.Friday
+	return c.Time.In(c.Loc).Weekday() == time.Friday
 }
 
 // IsSaturday 是否是周六
 func (c Carbon) IsSaturday() bool {
-	return c.Time.In(c.loc).Weekday() == time.Saturday
+	return c.Time.In(c.Loc).Weekday() == time.Saturday
 }
 
 // IsSunday 是否是周日
 func (c Carbon) IsSunday() bool {
-	return c.Time.In(c.loc).Weekday() == time.Sunday
+	return c.Time.In(c.Loc).Weekday() == time.Sunday
 }
 
 // IsWeekday 是否是工作日
