@@ -14,32 +14,35 @@ type Carbon struct {
 
 // Now 当前
 func Now() Carbon {
-	return newCarbon(time.Now())
+	return Carbon{Time: time.Now()}
 }
 
 // Now 当前(指定时区)
 func (c Carbon) Now() Carbon {
-	return newCarbon(Now().Time.In(c.Loc))
+	return Carbon{Time: time.Now(), Loc: c.Loc}
 }
 
 // Tomorrow 明天
 func Tomorrow() Carbon {
-	return newCarbon(time.Now().AddDate(0, 0, 1))
+	return Carbon{Time: time.Now().AddDate(0, 0, 1)}
 }
 
 // Tomorrow 明天(指定时区)
 func (c Carbon) Tomorrow() Carbon {
-	return newCarbon(Tomorrow().Time.In(c.Loc))
+	return Carbon{Time: Tomorrow().Time, Loc: c.Loc}
 }
 
 // Yesterday 昨天
 func Yesterday() Carbon {
-	return newCarbon(time.Now().AddDate(0, 0, -1))
+	return Carbon{Time: time.Now().AddDate(0, 0, -1)}
 }
 
 // Yesterday 昨天(指定时区)
 func (c Carbon) Yesterday() Carbon {
-	return newCarbon(Yesterday().Time.In(c.Loc))
+	return Carbon{
+		Time: Yesterday().Time,
+		Loc:  c.Loc,
+	}
 }
 
 // CreateFromTimestamp 从时间戳创建Carbon实例
@@ -57,12 +60,15 @@ func CreateFromTimestamp(timestamp int64) Carbon {
 	default:
 		ts = 0
 	}
-	return newCarbon(time.Unix(ts, 0))
+	return Carbon{Time: time.Unix(ts, 0)}
 }
 
 // CreateFromTimestamp 从时间戳创建Carbon实例(指定时区)
 func (c Carbon) CreateFromTimestamp(timestamp int64) Carbon {
-	return newCarbon(CreateFromTimestamp(timestamp).Time.In(c.Loc))
+	return Carbon{
+		Time: CreateFromTimestamp(timestamp).Time,
+		Loc:  c.Loc,
+	}
 }
 
 // CreateFromDateTime 从年月日时分秒创建Carbon实例
