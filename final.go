@@ -140,10 +140,7 @@ func (c Carbon) ToTimeString() string {
 
 // ToAtomString 输出Atom格式字符串
 func (c Carbon) ToAtomString() string {
-	if c.IsZero() {
-		return ""
-	}
-	return c.Time.In(c.Loc).Format(RFC3339Format)
+	return c.ToRfc3339String()
 }
 
 // ToAnsicString 输出Ansic格式字符串
