@@ -172,10 +172,7 @@ func (c Carbon) ToRssString() string {
 
 // ToW3cString 输出W3C格式字符串
 func (c Carbon) ToW3cString() string {
-	if c.IsZero() {
-		return ""
-	}
-	return c.Time.In(c.Loc).Format(RFC3339Format)
+	return c.ToRfc3339String()
 }
 
 // ToUnixDateString 输出UnixDate格式字符串
