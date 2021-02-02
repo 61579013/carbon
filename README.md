@@ -860,4 +860,4 @@ invalid timezone "XXXX", please see the $GOROOT/lib/time/zoneinfo.zip file for a
 * [goframe/gtime](https://github.com/gogf/gf/tree/master/os/gtime)
 
 #### 更新日志
-[wiki/change.log](https://gitee.com/go-package/carbon/wikis/更新日志)
+[wiki/更新日志](https://gitee.com/go-package/carbon/wikis/更新日志)
