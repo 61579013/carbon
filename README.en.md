@@ -658,6 +658,7 @@ carbon.Now().SetLocale("en").Locale() // en
 carbon.Now().SetLocale("zh-CN").Locale() // zh-CN
 
 // Get constellation name
+carbon.Now().Constellation() // Leo
 carbon.Now().SetLocale("en").Constellation() // Leo
 carbon.Now().SetLocale("zh-CN").Constellation() // 狮子座
 
