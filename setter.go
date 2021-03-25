@@ -11,7 +11,6 @@ func (c Carbon) SetTimezone(name string) Carbon {
 		c.Loc = loc
 		c.Error = err
 	}
-
 	return c
 }
 
@@ -20,9 +19,7 @@ func SetTimezone(name string) Carbon {
 	if name == Local {
 		return Carbon{Loc: time.Local, Lang: NewLanguage()}
 	}
-
 	loc, err := getLocationByTimezone(name)
-
 	return Carbon{Loc: loc, Error: err, Lang: NewLanguage()}
 }
 
