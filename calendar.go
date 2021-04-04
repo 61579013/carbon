@@ -62,7 +62,7 @@ func (c Carbon) ToLunarDateString() string {
 	return "二零一八年十一月廿五"
 }
 
-// ToShortLunarDateString 输出简写农历日期
+// Todo ToShortLunarDateString 输出简写农历日期
 func (c Carbon) ToShortLunarDateString() string {
 	return "20181125"
 }
