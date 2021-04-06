@@ -136,7 +136,7 @@ type Carbon struct {
 	Error error
 }
 
-// 实现String接口
+// String 实现 String 接口
 func (c Carbon) String() string {
 	if c.IsZero() {
 		return ""
