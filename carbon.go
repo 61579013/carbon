@@ -3,7 +3,8 @@
 // @Page github.com/golang-module/carbon
 // @Version v1.4.2
 // @Author gouguoyin
-// @Email mail@gouguoyin.cn
+// @Blog www.gouguoyin.cn
+// @Email contact@gouguoyin.cn
 
 package carbon
 
