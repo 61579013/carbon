@@ -1152,7 +1152,7 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 | n | Numeric representation of a month, without leading zeros | - | 1-12 | 8 |
 | y | A two digit representation of a year | 2 | 00-99 | 20 |
 | Y | A full numeric representation of a year, 4 digits | 4 | 0000-9999 | 2020 |
-| a | A full numeric representation of a year, 4 digits | 2 | am/pm | pm |
+| a | Lowercase Ante meridiem and Post meridiem | 2 | am/pm | pm |
 | A | Uppercase Ante meridiem and Post meridiem | 2 | AM/PM | PM |
 | g | 12-hour format of an hour without leading zeros | - | 1-12 | 1 |
 | G | 24-hour format of an hour without leading zeros | - | 0-23 | 15 |
@@ -1171,15 +1171,14 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 | U | Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT) | 10 | - | 1611818268 |
 | u | Millisecond| 3 | - | 999 |
 | w | Numeric representation of the day of the week | 1 | 0-6 | 6 |
-| t | Number of days in the given month | 2 | 28-31 | 30 |
-| z | The day of the year (starting from 0) | - | 0-365 | 15 |
+| t | Total days of the month | 2 | 28-31 | 30 |
+| z | Day of the year | - | 0-365 | 15 |
 | e | Location | - | - | America/New_York |
 | Q | Quarter | 1 | 1-4 | 1 |
 | C | Century | - | 0-99 | 21 |
 
 #### Reference
 * [briannesbitt/carbon](https://github.com/briannesbitt/Carbon)
-* [uniplaces/carbon](https://github.com/uniplaces/carbon)
 * [jinzhu/now](https://github.com/jinzhu/now/)
 * [araddon/dateparse](https://github.com/araddon/dateparse)
 * [goframe/gtime](https://github.com/gogf/gf/tree/master/os/gtime)
@@ -1188,3 +1187,8 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 * [overtrue/chinese-calendar](https://github.com/overtrue/chinese-calendar)
 * [moment/moment](https://github.com/moment/moment)
 * [iamkun/dayjs](https://github.com/iamkun/dayjs)
+
+#### Links
+* [changelog](https://github.com/golang-module/carbon/wiki/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97)
+* [segmentfault](https://segmentfault.com/t/go-carbon)
+* [oschina](https://www.oschina.net/p/go-carbon)
