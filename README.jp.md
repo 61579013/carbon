@@ -1121,7 +1121,7 @@ if c.Error != nil {
 }
 fmt.Println(c.ToDateTimeString())
 // 出力
-cannot parse "xxx" to carbon, please make sure the value is valid
+cannot parse "xxx" as carbon, please make sure the value is valid
 ```
 
 ###### シーン二
