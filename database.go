@@ -10,13 +10,13 @@ import (
 func (c *Carbon) Scan(v interface{}) error {
 	value, ok := v.(time.Time)
 	if ok {
-		*c = Carbon{Time: value, Loc: c.Loc}
+		*c = Carbon{Time: value, Loc: time.Local}
 		return nil
 	}
 	return fmt.Errorf("can not convert %v to carbon", v)
 }
 
-// Value the interface providing the Value method for package database/sql/driver
+// Value the interface providing the Value method for package database/sql/driver.
 func (c Carbon) Value() (driver.Value, error) {
 	if c.IsZero() {
 		return nil, nil
