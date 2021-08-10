@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 type Person struct {
@@ -36,7 +38,7 @@ func TestCarbon_MarshalJSON1(t *testing.T) {
 	}
 	data, err := json.Marshal(&person)
 	if err != nil {
-		t.Fatal(err)
+		assert.NotNil(t, err)
 	}
 	fmt.Printf("Person1 output by json:\n%s\n", data)
 }
@@ -57,7 +59,7 @@ func TestCarbon_MarshalJSON2(t *testing.T) {
 	}
 	data, err := json.Marshal(&person)
 	if err != nil {
-		t.Fatal(err)
+		assert.NotNil(t, err)
 	}
 	fmt.Printf("Person2 output by json:\n%s\n", data)
 }
@@ -79,7 +81,7 @@ func TestCarbon_UnmarshalJSON1(t *testing.T) {
 	person := new(Person)
 	err := json.Unmarshal([]byte(str), &person)
 	if err != nil {
-		t.Fatal(err)
+		assert.NotNil(t, err)
 	}
 	fmt.Printf("Json string parse to person:\n%+v\n", *person)
 }
@@ -101,7 +103,7 @@ func TestCarbon_UnmarshalJSON2(t *testing.T) {
 	person := new(Person)
 	err := json.Unmarshal([]byte(str), &person)
 	if err != nil {
-		t.Fatal(err)
+		assert.NotNil(t, err)
 	}
 	fmt.Printf("Json string parse to person:\n%+v\n", *person)
 }
@@ -110,7 +112,5 @@ func TestError_UnmarshalJSON(t *testing.T) {
 	str := `xxx`
 	person := new(Person)
 	err := json.Unmarshal([]byte(str), &person)
-	if err != nil {
-		fmt.Println("catch an exception in UnmarshalJSON():", err)
-	}
+	assert.NotNil(t, err, "It should catch an exception in UnmarshalJSON()")
 }
