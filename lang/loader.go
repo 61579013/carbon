@@ -9,7 +9,7 @@ import (
 
 var (
 	// langDir language directory
-	langDir = "/lang/"
+	langDir = "./lang/"
 
 	// invalidLocaleError returns an invalid locale error.
 	invalidLocaleError = func(locale string) error {
