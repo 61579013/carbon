@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"gitee.com/go-package/carbon/lang"
+	"gitee.com/golang-package/carbon/lang"
 )
 
 var (
@@ -67,8 +67,8 @@ func (l *Language) translate(unit string, number int64) string {
 	if len(slice) == 1 {
 		return strings.Replace(slice[0], "%d", strconv.FormatInt(number, 10), 1)
 	}
-	if number > 1 {
-		return strings.Replace(slice[1], "%d", strconv.FormatInt(number, 10), 1)
+	if int64(len(slice)) <= number {
+		return strings.Replace(slice[len(slice)-1], "%d", strconv.FormatInt(number, 10), 1)
 	}
-	return slice[0]
+	return strings.Replace(slice[number-1], "%d", strconv.FormatInt(number, 10), 1)
 }
