@@ -1,5 +1,5 @@
-module gitee.com/go-package/carbon
+module gitee.com/golang-package/carbon
 
-go 1.14
+go 1.16
 
 require github.com/stretchr/testify v1.7.0
