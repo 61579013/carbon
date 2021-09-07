@@ -1,4 +1,4 @@
-module gitee.com/go-package/carbon
+module gitee.com/go-package/carbon/v2
 
 go 1.16
 
