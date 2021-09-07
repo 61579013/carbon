@@ -22,6 +22,8 @@ it is helpful, please give me a star
 
 #### Installation
 
+##### Go version < 1.16
+
 ```go
 // By github
 go get -u github.com/golang-module/carbon
@@ -35,6 +37,24 @@ go get -u gitee.com/go-package/carbon
 
 import (
     "gitee.com/go-package/carbon"
+)               
+```
+
+##### Go version >= 1.16
+
+```go
+// By github
+go get -u github.com/golang-module/carbon/v2
+
+import (
+    "github.com/golang-module/carbon/v2"
+)
+
+// By gitee
+go get -u gitee.com/go-package/carbon/v2
+
+import (
+    "gitee.com/go-package/carbon/v2"
 )               
 ```
 

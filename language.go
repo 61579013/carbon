@@ -3,10 +3,11 @@ package carbon
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strconv"
 	"strings"
+
+	"github.com/gobuffalo/packr"
 )
 
 var (
@@ -48,26 +49,29 @@ func (lang *Language) SetLocale(locale string) {
 		return
 	}
 	lang.locale = locale
-	fileName := lang.dir + string(os.PathSeparator) + locale + ".json"
-	bytes, err := ioutil.ReadFile(fileName)
+	box := packr.NewBox(lang.dir)
+	localeName := locale + ".json"
+	bytes, err := box.Find(localeName)
+	localePath := lang.dir + string(os.PathSeparator) + localeName
 	if err != nil {
-		lang.Error = invalidLocaleError(fileName)
+		lang.Error = invalidLocaleError(localePath)
+		return
 	}
 	if json.Unmarshal(bytes, &lang.resources) != nil {
-		lang.Error = invalidLocaleError(fileName)
+		lang.Error = invalidLocaleError(localePath)
 	}
 }
 
 // SetResources sets language resources.
 // 设置资源
-func (l *Language) SetResources(resources map[string]string) {
-	if len(l.resources) == 0 {
-		l.resources = resources
+func (lang *Language) SetResources(resources map[string]string) {
+	if len(lang.resources) == 0 {
+		lang.resources = resources
 		return
 	}
 	for k, v := range resources {
-		if _, ok := l.resources[k]; ok {
-			l.resources[k] = v
+		if _, ok := lang.resources[k]; ok {
+			lang.resources[k] = v
 		}
 	}
 }
