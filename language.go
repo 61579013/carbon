@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"strings"
 
-	"gitee.com/golang-package/carbon/lang"
+	"gitee.com/go-package/carbon/lang"
 )
 
 var (
