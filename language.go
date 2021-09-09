@@ -55,6 +55,7 @@ func (lang *Language) SetLocale(locale string) {
 	bytes, err := fs.ReadFile(fileName)
 	if err != nil {
 		lang.Error = invalidLocaleError(fileName)
+		return
 	}
 	if json.Unmarshal(bytes, &lang.resources) != nil {
 		lang.Error = invalidLocaleError(fileName)
