@@ -1097,7 +1097,7 @@ fmt.Printf("%+v", *person)
 ###### 设置区域
 
 ```go
-lang := NewLanguage()
+lang := carbon.NewLanguage()
 if err := lang.SetLocale("zh-CN"); err != nil {
     // 错误处理
     log.Fatal(err)
@@ -1116,7 +1116,7 @@ c.Now().AddHours(1).Season() // 夏季
 ###### 重写部分翻译资源(其余仍然按照指定的 `locale` 文件内容翻译)
 
 ```go
-lang := NewLanguage()
+lang := carbon.NewLanguage()
 
 if err := lang.SetLocale("en"); err != nil {
     // 错误处理
@@ -1142,7 +1142,7 @@ c.Now().Season() // Summer
 ###### 重写全部翻译资源(无需指定 `locale`)
 
 ```go
-lang := NewLanguage()
+lang := carbon.NewLanguage()
 resources := map[string]string {
     "months": "january|february|march|april|may|june|july|august|september|october|november|december",
     "short_months": "jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec",
