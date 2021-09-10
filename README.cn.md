@@ -19,7 +19,7 @@ Carbon 已被 [awesome-go](https://github.com/avelino/awesome-go#date-and-time "
 
 #### 安装使用
 
-##### Golang 版本小于1.16
+> 确保已安装 `1.16` 或更高版本的 Go
 
 ```go
 // 使用 github 库
@@ -34,24 +34,6 @@ go get -u gitee.com/go-package/carbon
 
 import (
     "gitee.com/go-package/carbon"
-)
-```
-
-##### Golang 版本大于等于1.16
-
-```go
-// 使用 github 库
-go get -u github.com/golang-module/carbon/v2
-
-import (
-    "github.com/golang-module/carbon/v2"
-)
-
-// 使用 gitee 库
-go get -u gitee.com/go-package/carbon/v2
-
-import (
-    "gitee.com/go-package/carbon/v2"
 )
 ```
 
@@ -453,6 +435,15 @@ carbon.Parse("2020-08-05 13:14:15").DiffInMinutesWithAbs(carbon.Parse("2020-08-0
 carbon.Parse("2020-08-05 13:14:15").DiffInSeconds(carbon.Parse("2020-08-05 13:14:14")) // -1
 // 相差多少秒（绝对值）
 carbon.Parse("2020-08-05 13:14:15").DiffInSecondsWithAbs(carbon.Parse("2020-08-05 13:14:14")) // 1
+
+// 相差字符串
+carbon.Now().DiffInString() // just now
+carbon.Now().AddYearsNoOverflow(1).DiffInString() // -1 year
+carbon.Now().SubYearsNoOverflow(1).DiffInString() // 1 year
+// 相差字符串（绝对值）
+carbon.Now().DiffInStringWithAbs(carbon.Now()) // just now
+carbon.Now().AddYearsNoOverflow(1).DiffInStringWithAbs(carbon.Now()) // 1 year
+carbon.Now().SubYearsNoOverflow(1).DiffInStringWithAbs(carbon.Now()) // 1 year
 
 // 对人类友好的可读格式时间差
 carbon.Parse("2020-08-05 13:14:15").DiffForHumans() // just now
@@ -1278,9 +1269,3 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 * [arrow-py/arrow](https://github.com/arrow-py/arrow)
 * [moment/moment](https://github.com/moment/moment)
 * [iamkun/dayjs](https://github.com/iamkun/dayjs)
-
-#### 相关链接
-
-* [robeeask社区](https://carbon.robeeask.com/ "robeeask社区")
-* [掘金社区](https://juejin.cn/column/6988159448736858120 "掘金社区")
-* [segmentfault社区](https://segmentfault.com/blog/carbon "segmentfault社区")
