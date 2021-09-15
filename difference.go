@@ -172,7 +172,7 @@ func (c Carbon) DiffInString(carbon ...Carbon) string {
 }
 
 // DiffInStringWithAbs gets the difference in string with absolute value, i18n is supported.
-// 相差字符串，支持i18n
+// 相差字符串，支持i18n(绝对值)
 func (c Carbon) DiffInStringWithAbs(carbon ...Carbon) string {
 	end := c.Now()
 	if len(carbon) > 0 {
