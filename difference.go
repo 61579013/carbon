@@ -185,7 +185,7 @@ func (c Carbon) DiffInStringWithAbs(carbon ...Carbon) string {
 	return c.lang.translate(unit, getAbsValue(value))
 }
 
-// DiffForHumans gets the difference in a human readable format, i18n is supported.
+// DiffForHumans gets the difference in a human-readable format, i18n is supported.
 // 获取对人类友好的可读格式时间差，支持i18n
 func (c Carbon) DiffForHumans(carbon ...Carbon) string {
 	end := c.Now()
