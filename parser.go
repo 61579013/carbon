@@ -36,7 +36,6 @@ func (c Carbon) Parse(value string, timezone ...string) Carbon {
 	c = c.ParseByLayout(value, layout)
 	if c.Error != nil {
 		c.Error = invalidValueError(value)
-		return c
 	}
 	return c
 }
@@ -62,7 +61,6 @@ func (c Carbon) ParseByFormat(value string, format string, timezone ...string) C
 	c = c.ParseByLayout(value, format2layout(format))
 	if c.Error != nil {
 		c.Error = invalidFormatError(value, format)
-		return c
 	}
 	return c
 }
