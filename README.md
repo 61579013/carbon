@@ -77,16 +77,12 @@ carbon.Now(Carbon.NewYork).ToDateTimeString() // 2020-08-05 14:14:15
 carbon.SetTimezone(Carbon.NewYork).Now().ToDateTimeString() // 2020-08-05 14:14:15
 // Return timestamp with second of today
 carbon.Now().Timestamp() // 1596604455
-carbon.Now().TimestampWithSecond() // 1596604455
 // Return timestamp with millisecond of today
 carbon.Now().TimestampMilli() // 1596604455000
-carbon.Now().TimestampWithMillisecond() // 1596604455000
 // Return timestamp with microsecond of today
 carbon.Now().TimestampMicro() // 1596604455000000
-carbon.Now().TimestampWithMicrosecond() // 1596604455000000
 // Return timestamp with nanosecond of today
 carbon.Now().TimestampNano() // 1596604455000000000
-carbon.Now().TimestampWithNanosecond() // 1596604455000000000
 
 // Return datetime of yesterday 
 fmt.Sprintf("%s", carbon.Yesterday()) // 2020-08-04 13:14:15
@@ -102,16 +98,12 @@ carbon.Yesterday(Carbon.NewYork).ToDateTimeString() // 2020-08-04 14:14:15
 carbon.SetTimezone(Carbon.NewYork).Yesterday().ToDateTimeString() // 2020-08-04 14:14:15
 // Return timestamp with second of yesterday
 carbon.Yesterday().Timestamp() // 1596518055
-carbon.Yesterday().TimestampWithSecond() // 1596518055
 // Return timestamp with millisecond of yesterday
 carbon.Yesterday().TimestampMilli() // 1596518055000
-carbon.Yesterday().TimestampWithMillisecond() // 1596518055000
 // Return timestamp with microsecond of yesterday
 carbon.Yesterday().TimestampMicro() // 1596518055000000
-carbon.Yesterday().TimestampWithMicrosecond() // 1596518055000000
 // Return timestamp with nanosecond of yesterday
 carbon.Yesterday().TimestampNano() // 1596518055000000000
-carbon.Yesterday().TimestampWithNanosecond() // 1596518055000000000
 
 // Return datetime of tomorrow
 fmt.Sprintf("%s", carbon.Tomorrow()) // 2020-08-06 13:14:15
@@ -127,16 +119,12 @@ carbon.Tomorrow(Carbon.NewYork).ToDateTimeString() // 2020-08-06 14:14:15
 carbon.SetTimezone(Carbon.NewYork).Tomorrow().ToDateTimeString() // 2020-08-06 14:14:15
 // Return timestamp with second of tomorrow
 carbon.Tomorrow().Timestamp() // 1596690855
-carbon.Tomorrow().TimestampWithSecond() // 1596690855
 // Return timestamp with millisecond of tomorrow
 carbon.Tomorrow().TimestampMilli() // 1596690855000
-carbon.Tomorrow().TimestampWithMillisecond() // 1596690855000
 // Return timestamp with microsecond of tomorrow
 carbon.Tomorrow().TimestampMicro() // 1596690855000000
-carbon.Tomorrow().TimestampWithMicrosecond() // 1596690855000000
 // Return timestamp with nanosecond of tomorrow
 carbon.Tomorrow().TimestampNano() // 1596690855000000000
-carbon.Tomorrow().TimestampWithNanosecond() // 1596690855000000000
 ```
 
 ##### Create a Carbon instance
@@ -161,9 +149,19 @@ carbon.CreateFromTimestampMicro(1649735755981566, carbon.Tokyo).ToString() // 20
 carbon.CreateFromTimestampNano(1649735755981566000).ToString() // 2022-04-12 11:55:55.981566 +0800 CST
 carbon.CreateFromTimestampNano(1649735755981566000, carbon.Tokyo).ToString() // 2022-04-12 11:55:55.981566 +0900 CST
 
-// Create a Carbon instance from a given year, month, day, hour, minute and second
+// Create a Carbon instance from a given date and time.
 carbon.CreateFromDateTime(2020, 8, 5, 13, 14, 15).ToDateTimeString() // 2020-08-05 13:14:15
 carbon.CreateFromDateTime(2020, 8, 5, 13, 14, 15, carbon.Tokyo).ToDateTimeString() // 2020-08-05 14:14:15
+// Create a Carbon instance from a given date and time with millisecond. 
+carbon.CreateFromDateTimeMilli(2020, 1, 1, 13, 14, 15, 999).ToString() // 2020-01-01 13:14:15.999 +0800 CST
+carbon.CreateFromDateTimeMilli(2020, 1, 1, 13, 14, 15, 999, carbon.Tokyo).ToString() // 2020-01-01 13:14:15.999 +0900 JST
+// Create a Carbon instance from a given date and time with microsecond. 
+carbon.CreateFromDateTimeMicro(2020, 1, 1, 13, 14, 15, 999999).ToString() // 2020-01-01 13:14:15.999999 +0800 CST
+carbon.CreateFromDateTimeMicro(2020, 1, 1, 13, 14, 15, 999999, carbon.Tokyo).ToString() // 2020-01-01 13:14:15.999999 +0900 JST
+// Create a Carbon instance from a given date and time with nanosecond. 
+carbon.CreateFromDateTimeNano(2020, 1, 1, 13, 14, 15, 999999999).ToString() // 2020-01-01 13:14:15.999999999 +0800 CST
+carbon.CreateFromDateTimeNano(2020, 1, 1, 13, 14, 15, 999999999, carbon.Tokyo).ToString() // 2020-01-01 13:14:15.999999999 +0900 JST
+
 // Create a Carbon instance from a given year, month and day
 carbon.CreateFromDate(2020, 8, 5).ToDateTimeString() // 2020-08-05 13:14:15
 carbon.CreateFromDate(2020, 8, 5, carbon.Tokyo).ToDateTimeString() // 2020-08-05 14:14:15
@@ -760,15 +758,14 @@ carbon.Parse("2020-08-05 13:14:15.999").Microsecond() // 999000
 // Get current nanosecond
 carbon.Parse("2020-08-05 13:14:15.999").Nanosecond() // 999000000
 
-// Get timestamp with second, Timestamp() is shorthand for TimestampWithSecond()
+// Get timestamp with second
 carbon.Parse("2020-08-05 13:14:15").Timestamp() // 1596604455
-carbon.Parse("2020-08-05 13:14:15").TimestampWithSecond() // 1596604455
 // Get timestamp with millisecond
-carbon.Parse("2020-08-05 13:14:15").TimestampWithMillisecond() // 1596604455000
+carbon.Parse("2020-08-05 13:14:15").TimestampMilli() // 1596604455000
 // Get timestamp with microsecond
-carbon.Parse("2020-08-05 13:14:15").TimestampWithMicrosecond() // 1596604455000000
+carbon.Parse("2020-08-05 13:14:15").TimestampMicro() // 1596604455000000
 // Get timestamp with nanosecond
-carbon.Parse("2020-08-05 13:14:15").TimestampWithNanosecond() // 1596604455000000000
+carbon.Parse("2020-08-05 13:14:15").TimestampNano() // 1596604455000000000
 
 // Get timezone name
 carbon.SetTimezone(carbon.PRC).Timezone() // CST
@@ -1060,17 +1057,14 @@ carbon.Parse("2020-08-05 13:14:15", carbon.PRC).Lunar().IsPigYear() // false
 
 ```go
 type Person struct {
-    ID  int64  `json:"id"`
     Name string `json:"name"`
     Age int `json:"age"`
     Birthday carbon.DateTime `json:"birthday"`
     GraduatedAt carbon.Date `json:"graduated_at"`
-    CreatedAt carbon.Time `json:"created_at"`
-    UpdatedAt carbon.Timestamp `json:"updated_at"`
-    DateTime1 carbon.TimestampWithSecond `json:"date_time1"`
-    DateTime2 carbon.TimestampWithMillisecond `json:"date_time2"`
-    DateTime3 carbon.TimestampWithMicrosecond `json:"date_time3"`
-    DateTime4 carbon.TimestampWithNanosecond `json:"date_time4"`
+    DateTime1 carbon.Timestamp `json:"date_time1"`
+    DateTime2 carbon.TimestampMilli `json:"date_time2"`
+    DateTime3 carbon.TimestampMicro `json:"date_time3"`
+    DateTime4 carbon.TimestampNano `json:"date_time4"`
 }
 ```
 
@@ -1078,17 +1072,14 @@ type Person struct {
 
 ```go
 person := Person {
-    ID:          1,
-    Name:        "gouguoyin",
-    Age:         18,
-    Birthday:    carbon.DateTime{carbon.Now().SubYears(18)},
-    GraduatedAt: carbon.Date{carbon.Parse("2020-08-05 13:14:15")},
-    CreatedAt:   carbon.Time{carbon.Parse("2021-08-05 13:14:15")},
-    UpdatedAt:   carbon.Timestamp{carbon.Parse("2022-08-05 13:14:15")},
-    DateTime1:   carbon.TimestampWithSecond{carbon.Parse("2023-08-05 13:14:15")},
-    DateTime2:   carbon.TimestampWithMillisecond{carbon.Parse("2024-08-05 13:14:15")},
-    DateTime3:   carbon.TimestampWithMicrosecond{carbon.Parse("2025-08-05 13:14:15")},
-    DateTime4:   carbon.TimestampWithNanosecond{carbon.Parse("2025-08-05 13:14:15")},
+	Name:        "gouguoyin",
+	Age:         18,
+	Birthday:    carbon.DateTime{carbon.Now().SubYears(18)},
+	GraduatedAt: carbon.Date{carbon.Parse("2020-08-05 13:14:15")},
+	DateTime1:   carbon.Timestamp{carbon.Parse("2023-08-05 13:14:15")},
+	DateTime2:   carbon.TimestampMilli{carbon.Parse("2024-08-05 13:14:15")},
+	DateTime3:   carbon.TimestampMicro{carbon.Parse("2025-08-05 13:14:15")},
+	DateTime4:   carbon.TimestampNano{carbon.Parse("2025-08-05 13:14:15")},
 }
 ```
 
@@ -1103,13 +1094,10 @@ if err != nil {
 fmt.Printf("%s", data)
 // Output
 {
-    "id": 1,
     "name": "gouguoyin",
     "age": 18,
     "birthday": "2003-07-16 16:22:02",
     "graduated_at": "2020-08-05",
-    "created_at": "13:14:15",
-    "updated_at": 1659676455,
     "date_time1": 1691212455,
     "date_time2": 1722834855000,
     "date_time3": 1754370855000000,
@@ -1121,12 +1109,10 @@ fmt.Printf("%s", data)
 
 ```go
 jsonString := `{
-	"id": 1,
 	"name": "gouguoyin",
 	"age": 18,
 	"birthday": "2003-07-16 16:22:02",
 	"graduated_at": "2020-08-05",
-	"updated_at": 1659676455,
 	"date_time1": 1691212455,
 	"date_time2": 1722834855000,
 	"date_time3": 1754370855000000,
@@ -1140,7 +1126,7 @@ if err != nil {
 }
 fmt.Printf("%+v", *person)
 // Output
-{ID:1 Name:gouguoyin Age:18 Birthday:2003-07-16 16:22:02 GraduatedAt:2020-08-05 00:00:00 UpdatedAt:2022-08-05 13:14:15 DateTime1:2023-08-05 13:14:15 DateTime2:2024-08-05 13:14:15 DateTime3:2025-08-05 13:14:15 DateTime4:2025-08-05 13:14:15}
+{Name:gouguoyin Age:18 Birthday:2003-07-16 16:22:02 GraduatedAt:2020-08-05 00:00:00 DateTime1:2023-08-05 13:14:15 DateTime2:2024-08-05 13:14:15 DateTime3:2025-08-05 13:14:15 DateTime4:2025-08-05 13:14:15}
 ```
 
 ##### I18n

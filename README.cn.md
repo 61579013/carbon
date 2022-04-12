@@ -74,16 +74,12 @@ carbon.Now(Carbon.NewYork).ToDateTimeString() // 2020-08-05 14:14:15
 carbon.SetTimezone(Carbon.NewYork).Now().ToDateTimeString() // 2020-08-05 14:14:15
 // 今天秒级时间戳
 carbon.Now().Timestamp() // 1596604455
-carbon.Now().TimestampWithSecond() // 1596604455
 // 今天毫秒级时间戳
 carbon.Now().TimestampMilli() // 1596604455000
-carbon.Now().TimestampWithMillisecond() // 1596604455000
 // 今天微秒级时间戳
 carbon.Now().TimestampMicro() // 1596604455000000
-carbon.Now().TimestampWithMicrosecond() // 1596604455000000
 // 今天纳秒级时间戳
 carbon.Now().TimestampNano() // 1596604455000000000
-carbon.Now().TimestampWithNanosecond() // 1596604455000000000
 
 // 昨天此刻
 fmt.Sprintf("%s", carbon.Yesterday()) // 2020-08-04 13:14:15
@@ -99,16 +95,12 @@ carbon.Yesterday(Carbon.NewYork).ToDateTimeString() // 2020-08-04 14:14:15
 carbon.SetTimezone(Carbon.NewYork).Yesterday().ToDateTimeString() // 2020-08-04 14:14:15
 // 昨天秒级时间戳
 carbon.Yesterday().Timestamp() // 1596518055
-carbon.Yesterday().TimestampWithSecond() // 1596518055
 // 昨天毫秒级时间戳
 carbon.Yesterday().TimestampMilli() // 1596518055000
-carbon.Yesterday().TimestampWithMillisecond() // 1596518055000
 // 昨天微秒级时间戳
 carbon.Yesterday().TimestampMicro() // 1596518055000000
-carbon.Yesterday().TimestampWithMicrosecond() // 1596518055000000
 // 昨天纳秒级时间戳
 carbon.Yesterday().TimestampNano() // 1596518055000000000
-carbon.Yesterday().TimestampWithNanosecond() // 1596518055000000000
 
 // 明天此刻
 fmt.Sprintf("%s", carbon.Tomorrow()) // 2020-08-06 13:14:15
@@ -124,16 +116,12 @@ carbon.Tomorrow(Carbon.NewYork).ToDateTimeString() // 2020-08-06 14:14:15
 carbon.SetTimezone(Carbon.NewYork).Tomorrow().ToDateTimeString() // 2020-08-06 14:14:15
 // 明天秒级时间戳
 carbon.Tomorrow().Timestamp() // 1596690855
-carbon.Tomorrow().TimestampWithSecond() // 1596690855
 // 明天毫秒级时间戳
 carbon.Tomorrow().TimestampMilli() // 1596690855000
-carbon.Tomorrow().TimestampWithMillisecond() // 1596690855000
 // 明天微秒级时间戳
 carbon.Tomorrow().TimestampMicro() // 1596690855000000
-carbon.Tomorrow().TimestampWithMicrosecond() // 1596690855000000
 // 明天纳秒级时间戳
 carbon.Tomorrow().TimestampNano() // 1596690855000000000
-carbon.Tomorrow().TimestampWithNanosecond() // 1596690855000000000
 ```
 
 ##### 创建 Carbon 实例
@@ -154,13 +142,23 @@ carbon.CreateFromTimestampMilli(1649735755981, carbon.Tokyo).ToString() // 2022-
 // 从微秒级时间戳创建 Carbon 实例
 carbon.CreateFromTimestampMicro(1649735755981566).ToString() // 2022-04-12 11:55:55.981566 +0800 CST
 carbon.CreateFromTimestampMicro(1649735755981566, carbon.Tokyo).ToString() // 2022-04-12 11:55:55.981566 +0900 JST
-// 从纳级时间戳创建 Carbon 实例
+// 从纳秒级时间戳创建 Carbon 实例
 carbon.CreateFromTimestampNano(1649735755981566000).ToString() // 2022-04-12 11:55:55.981566 +0800 CST
 carbon.CreateFromTimestampNano(1649735755981566000, carbon.Tokyo).ToString() // 2022-04-12 11:55:55.981566 +0900 CST
 
 // 从年月日时分秒创建 Carbon 实例
 carbon.CreateFromDateTime(2020, 8, 5, 13, 14, 15).ToDateTimeString() // 2020-08-05 13:14:15
 carbon.CreateFromDateTime(2020, 8, 5, 13, 14, 15, carbon.Tokyo).ToDateTimeString() // 2020-08-05 14:14:15
+// 从年月日时分秒创建 Carbon 实例，包含毫秒
+carbon.CreateFromDateTimeMilli(2020, 1, 1, 13, 14, 15, 999).ToString() // 2020-01-01 13:14:15.999 +0800 CST
+carbon.CreateFromDateTimeMilli(2020, 1, 1, 13, 14, 15, 999, carbon.Tokyo).ToString() // 2020-01-01 13:14:15.999 +0900 JST
+// 从年月日时分秒创建 Carbon 实例，包含微秒
+carbon.CreateFromDateTimeMicro(2020, 1, 1, 13, 14, 15, 999999).ToString() // 2020-01-01 13:14:15.999999 +0800 CST
+carbon.CreateFromDateTimeMicro(2020, 1, 1, 13, 14, 15, 999999, carbon.Tokyo).ToString() // 2020-01-01 13:14:15.999999 +0900 JST
+// 从年月日时分秒创建 Carbon 实例，包含纳秒
+carbon.CreateFromDateTimeNano(2020, 1, 1, 13, 14, 15, 999999999).ToString() // 2020-01-01 13:14:15.999999999 +0800 CST
+carbon.CreateFromDateTimeNano(2020, 1, 1, 13, 14, 15, 999999999, carbon.Tokyo).ToString() // 2020-01-01 13:14:15.999999999 +0900 JST
+
 // 从年月日创建 Carbon 实例(时分秒默认为当前时分秒)
 carbon.CreateFromDate(2020, 8, 5).ToDateTimeString() // 2020-08-05 13:14:15
 carbon.CreateFromDate(2020, 8, 5, carbon.Tokyo).ToDateTimeString() // 2020-08-05 14:14:15
@@ -764,15 +762,14 @@ carbon.Parse("2020-08-05 13:14:15.999").Microsecond() // 999000
 // 获取当前纳秒
 carbon.Parse("2020-08-05 13:14:15.999").Nanosecond() // 999000000
 
-// 获取秒级时间戳, Timestamp() 是TimestampWithSecond()的简写
+// 获取秒级时间戳
 carbon.Parse("2020-08-05 13:14:15").Timestamp() // 1596604455
-carbon.Parse("2020-08-05 13:14:15").TimestampWithSecond() // 1596604455
 // 获取毫秒级时间戳
-carbon.Parse("2020-08-05 13:14:15").TimestampWithMillisecond() // 1596604455000
+carbon.Parse("2020-08-05 13:14:15").TimestampMilli() // 1596604455000
 // 获取微秒级时间戳
-carbon.Parse("2020-08-05 13:14:15").TimestampWithMicrosecond() // 1596604455000000
+carbon.Parse("2020-08-05 13:14:15").TimestampMicro() // 1596604455000000
 // 获取纳秒级时间戳
-carbon.Parse("2020-08-05 13:14:15").TimestampWithNanosecond() // 1596604455000000000
+carbon.Parse("2020-08-05 13:14:15").TimestampNano() // 1596604455000000000
 
 // 获取时区
 carbon.SetTimezone(carbon.PRC).Timezone() // CST
@@ -1065,17 +1062,14 @@ carbon.Parse("2020-08-05 13:14:15", carbon.PRC).Lunar().IsPigYear() // false
 
 ```go
 type Person struct {
-    ID  int64  `json:"id"`
     Name string `json:"name"`
     Age int `json:"age"`
     Birthday carbon.DateTime `json:"birthday"`
     GraduatedAt carbon.Date `json:"graduated_at"`
-    CreatedAt carbon.Time `json:"created_at"`
-    UpdatedAt carbon.Timestamp `json:"updated_at"`
-    DateTime1 carbon.TimestampWithSecond `json:"date_time1"`
-    DateTime2 carbon.TimestampWithMillisecond `json:"date_time2"`
-    DateTime3 carbon.TimestampWithMicrosecond `json:"date_time3"`
-    DateTime4 carbon.TimestampWithNanosecond `json:"date_time4"`
+    DateTime1 carbon.Timestamp `json:"date_time1"`
+    DateTime2 carbon.TimestampMilli `json:"date_time2"`
+    DateTime3 carbon.TimestampMicro `json:"date_time3"`
+    DateTime4 carbon.TimestampNano `json:"date_time4"`
 }
 ```
 
@@ -1083,17 +1077,14 @@ type Person struct {
 
 ```go
 person := Person {
-    ID:          1,
-    Name:        "gouguoyin",
-    Age:         18,
-    Birthday:    carbon.DateTime{carbon.Now().SubYears(18)},
-    GraduatedAt: carbon.Date{carbon.Parse("2020-08-05 13:14:15")},
-    CreatedAt:   carbon.Time{carbon.Parse("2021-08-05 13:14:15")},
-    UpdatedAt:   carbon.Timestamp{carbon.Parse("2022-08-05 13:14:15")},
-    DateTime1:   carbon.TimestampWithSecond{carbon.Parse("2023-08-05 13:14:15")},
-    DateTime2:   carbon.TimestampWithMillisecond{carbon.Parse("2024-08-05 13:14:15")},
-    DateTime3:   carbon.TimestampWithMicrosecond{carbon.Parse("2025-08-05 13:14:15")},
-    DateTime4:   carbon.TimestampWithNanosecond{carbon.Parse("2025-08-05 13:14:15")},
+	Name:        "gouguoyin",
+	Age:         18,
+	Birthday:    carbon.DateTime{carbon.Now().SubYears(18)},
+	GraduatedAt: carbon.Date{carbon.Parse("2020-08-05 13:14:15")},
+	DateTime1:   carbon.Timestamp{carbon.Parse("2023-08-05 13:14:15")},
+	DateTime2:   carbon.TimestampMilli{carbon.Parse("2024-08-05 13:14:15")},
+	DateTime3:   carbon.TimestampMicro{carbon.Parse("2025-08-05 13:14:15")},
+	DateTime4:   carbon.TimestampNano{carbon.Parse("2025-08-05 13:14:15")},
 }
 ```
 
@@ -1108,13 +1099,10 @@ if err != nil {
 fmt.Printf("%s", data)
 // 输出
 {
-    "id": 1,
     "name": "gouguoyin",
     "age": 18,
     "birthday": "2003-07-16 16:22:02",
     "graduated_at": "2020-08-05",
-    "created_at": "13:14:15",
-    "updated_at": 1659676455,
     "date_time1": 1691212455,
     "date_time2": 1722834855000,
     "date_time3": 1754370855000000,
@@ -1126,12 +1114,10 @@ fmt.Printf("%s", data)
 
 ```go
 jsonString := `{
-	"id": 1,
 	"name": "gouguoyin",
 	"age": 18,
 	"birthday": "2003-07-16 16:22:02",
 	"graduated_at": "2020-08-05",
-	"updated_at": 1659676455,
 	"date_time1": 1691212455,
 	"date_time2": 1722834855000,
 	"date_time3": 1754370855000000,
@@ -1145,7 +1131,7 @@ if err != nil {
 }
 fmt.Printf("%+v", *person)
 // 输出
-{ID:1 Name:gouguoyin Age:18 Birthday:2003-07-16 16:22:02 GraduatedAt:2020-08-05 00:00:00 UpdatedAt:2022-08-05 13:14:15 DateTime1:2023-08-05 13:14:15 DateTime2:2024-08-05 13:14:15 DateTime3:2025-08-05 13:14:15 DateTime4:2025-08-05 13:14:15}
+{Name:gouguoyin Age:18 Birthday:2003-07-16 16:22:02 GraduatedAt:2020-08-05 00:00:00 DateTime1:2023-08-05 13:14:15 DateTime2:2024-08-05 13:14:15 DateTime3:2025-08-05 13:14:15 DateTime4:2025-08-05 13:14:15}
 ```
 
 ##### 国际化支持
