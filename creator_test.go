@@ -147,29 +147,6 @@ func TestError_CreateFromTimestampNano(t *testing.T) {
 	assert.NotNil(t, c2.Error, "It should catch an exception in CreateFromTimestampNano()")
 }
 
-func TestCarbon_Create(t *testing.T) {
-	assert := assert.New(t)
-
-	tests := []struct {
-		year, month, day, hour, minute, second, nanosecond int    // 输入参数
-		expected                                           string // 期望值
-	}{
-		{2022, 4, 12, 11, 55, 55, 981566000, "2022-04-12 11:55:55.981566 +0800 CST"},
-	}
-
-	for index, test := range tests {
-		c := SetTimezone(PRC).Create(test.year, test.month, test.day, test.hour, test.minute, test.second, test.nanosecond)
-		assert.Nil(c.Error)
-		assert.Equal(test.expected, c.ToString(), "Current test index is "+strconv.Itoa(index))
-	}
-
-	for index, test := range tests {
-		c := Create(test.year, test.month, test.day, test.hour, test.minute, test.second, test.nanosecond, PRC)
-		assert.Nil(c.Error)
-		assert.Equal(test.expected, c.ToString(), "Current test index is "+strconv.Itoa(index))
-	}
-}
-
 func TestCarbon_CreateFromDateTime(t *testing.T) {
 	assert := assert.New(t)
 
@@ -204,6 +181,87 @@ func TestError_CreateFromDateTime(t *testing.T) {
 
 	c2 := CreateFromDateTime(year, month, day, hour, minute, second, timezone)
 	assert.NotNil(t, c2.Error, "It should catch an exception in CreateFromDateTime()")
+}
+
+func TestCarbon_CreateFromDateTimeMilli(t *testing.T) {
+	assert := assert.New(t)
+
+	tests := []struct {
+		year, month, day, hour, minute, second, millisecond int    // 输入参数
+		expected                                            string // 期望值
+	}{
+		{2020, 1, 1, 13, 14, 15, 999, "2020-01-01 13:14:15.999 +0800 CST"},
+		{2020, 1, 31, 13, 14, 15, 999, "2020-01-31 13:14:15.999 +0800 CST"},
+		{2020, 2, 1, 13, 14, 15, 999, "2020-02-01 13:14:15.999 +0800 CST"},
+		{2020, 2, 28, 13, 14, 15, 999, "2020-02-28 13:14:15.999 +0800 CST"},
+		{2020, 2, 29, 13, 14, 15, 999, "2020-02-29 13:14:15.999 +0800 CST"},
+	}
+
+	for index, test := range tests {
+		c := SetTimezone(PRC).CreateFromDateTimeMilli(test.year, test.month, test.day, test.hour, test.minute, test.second, test.millisecond)
+		assert.Nil(c.Error)
+		assert.Equal(test.expected, c.ToString(), "Current test index is "+strconv.Itoa(index))
+	}
+
+	for index, test := range tests {
+		c := CreateFromDateTimeMilli(test.year, test.month, test.day, test.hour, test.minute, test.second, test.millisecond, PRC)
+		assert.Nil(c.Error)
+		assert.Equal(test.expected, c.ToString(), "Current test index is "+strconv.Itoa(index))
+	}
+}
+
+func TestCarbon_CreateFromDateTimeMicro(t *testing.T) {
+	assert := assert.New(t)
+
+	tests := []struct {
+		year, month, day, hour, minute, second, microsecond int    // 输入参数
+		expected                                            string // 期望值
+	}{
+		{2020, 1, 1, 13, 14, 15, 999999, "2020-01-01 13:14:15.999999 +0800 CST"},
+		{2020, 1, 31, 13, 14, 15, 999999, "2020-01-31 13:14:15.999999 +0800 CST"},
+		{2020, 2, 1, 13, 14, 15, 999999, "2020-02-01 13:14:15.999999 +0800 CST"},
+		{2020, 2, 28, 13, 14, 15, 999999, "2020-02-28 13:14:15.999999 +0800 CST"},
+		{2020, 2, 29, 13, 14, 15, 999999, "2020-02-29 13:14:15.999999 +0800 CST"},
+	}
+
+	for index, test := range tests {
+		c := SetTimezone(PRC).CreateFromDateTimeMicro(test.year, test.month, test.day, test.hour, test.minute, test.second, test.microsecond)
+		assert.Nil(c.Error)
+		assert.Equal(test.expected, c.ToString(), "Current test index is "+strconv.Itoa(index))
+	}
+
+	for index, test := range tests {
+		c := CreateFromDateTimeMicro(test.year, test.month, test.day, test.hour, test.minute, test.second, test.microsecond, PRC)
+		assert.Nil(c.Error)
+		assert.Equal(test.expected, c.ToString(), "Current test index is "+strconv.Itoa(index))
+	}
+}
+
+func TestCarbon_CreateFromDateTimeNano(t *testing.T) {
+	assert := assert.New(t)
+
+	tests := []struct {
+		year, month, day, hour, minute, second, nanosecond int    // 输入参数
+		expected                                           string // 期望值
+	}{
+		{2020, 1, 1, 13, 14, 15, 999999999, "2020-01-01 13:14:15.999999999 +0800 CST"},
+		{2020, 1, 31, 13, 14, 15, 999999999, "2020-01-31 13:14:15.999999999 +0800 CST"},
+		{2020, 2, 1, 13, 14, 15, 999999999, "2020-02-01 13:14:15.999999999 +0800 CST"},
+		{2020, 2, 28, 13, 14, 15, 999999999, "2020-02-28 13:14:15.999999999 +0800 CST"},
+		{2020, 2, 29, 13, 14, 15, 999999999, "2020-02-29 13:14:15.999999999 +0800 CST"},
+	}
+
+	for index, test := range tests {
+		c := SetTimezone(PRC).CreateFromDateTimeNano(test.year, test.month, test.day, test.hour, test.minute, test.second, test.nanosecond)
+		assert.Nil(c.Error)
+		assert.Equal(test.expected, c.ToString(), "Current test index is "+strconv.Itoa(index))
+	}
+
+	for index, test := range tests {
+		c := CreateFromDateTimeNano(test.year, test.month, test.day, test.hour, test.minute, test.second, test.nanosecond, PRC)
+		assert.Nil(c.Error)
+		assert.Equal(test.expected, c.ToString(), "Current test index is "+strconv.Itoa(index))
+	}
 }
 
 func TestCarbon_CreateFromDate(t *testing.T) {

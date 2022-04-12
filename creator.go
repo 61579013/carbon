@@ -4,9 +4,9 @@ import (
 	"time"
 )
 
-// CreateFromTimestampWithSecond creates a Carbon instance from a given timestamp with second.
+// CreateFromTimestamp creates a Carbon instance from a given timestamp with second.
 // 从给定的秒级时间戳创建 Carbon 实例
-func (c Carbon) CreateFromTimestampWithSecond(timestamp int64, timezone ...string) Carbon {
+func (c Carbon) CreateFromTimestamp(timestamp int64, timezone ...string) Carbon {
 	if len(timezone) > 0 {
 		c.loc, c.Error = getLocationByTimezone(timezone[len(timezone)-1])
 	}
@@ -17,27 +17,15 @@ func (c Carbon) CreateFromTimestampWithSecond(timestamp int64, timezone ...strin
 	return c
 }
 
-// CreateFromTimestampWithSecond creates a Carbon instance from a given timestamp with second.
+// CreateFromTimestamp creates a Carbon instance from a given timestamp with second.
 // 从给定的秒级时间戳创建 Carbon 实例
-func CreateFromTimestampWithSecond(timestamp int64, timezone ...string) Carbon {
-	return NewCarbon().CreateFromTimestampWithSecond(timestamp, timezone...)
-}
-
-// CreateFromTimestamp creates a Carbon instance from a given timestamp with second, it is shorthand for CreateFromTimestampWithSecond.
-// 从给定的秒级时间戳创建 Carbon 实例, 是 CreateFromTimestampWithSecond 的简写
-func (c Carbon) CreateFromTimestamp(timestamp int64, timezone ...string) Carbon {
-	return c.CreateFromTimestampWithSecond(timestamp, timezone...)
-}
-
-// CreateFromTimestamp creates a Carbon instance from a given timestamp with second, it is shorthand for CreateFromTimestampWithSecond.
-// 从给定的秒级时间戳创建 Carbon 实例, 是 CreateFromTimestampWithSecond 的简写
 func CreateFromTimestamp(timestamp int64, timezone ...string) Carbon {
-	return CreateFromTimestampWithSecond(timestamp, timezone...)
+	return NewCarbon().CreateFromTimestamp(timestamp, timezone...)
 }
 
-// CreateFromTimestampWithMillisecond creates a Carbon instance from a given timestamp with millisecond.
+// CreateFromTimestampMilli creates a Carbon instance from a given timestamp with millisecond.
 // 从给定的微秒级时间戳创建 Carbon 实例
-func (c Carbon) CreateFromTimestampWithMillisecond(timestamp int64, timezone ...string) Carbon {
+func (c Carbon) CreateFromTimestampMilli(timestamp int64, timezone ...string) Carbon {
 	if len(timezone) > 0 {
 		c.loc, c.Error = getLocationByTimezone(timezone[len(timezone)-1])
 	}
@@ -48,27 +36,15 @@ func (c Carbon) CreateFromTimestampWithMillisecond(timestamp int64, timezone ...
 	return c
 }
 
-// CreateFromTimestampWithMillisecond creates a Carbon instance from a given timestamp with millisecond.
+// CreateFromTimestampMilli creates a Carbon instance from a given timestamp with millisecond.
 // 从给定的微秒级时间戳创建 Carbon 实例
-func CreateFromTimestampWithMillisecond(timestamp int64, timezone ...string) Carbon {
-	return NewCarbon().CreateFromTimestampWithMillisecond(timestamp, timezone...)
-}
-
-// CreateFromTimestampMilli creates a Carbon instance from a given timestamp with millisecond, it is shorthand for CreateFromTimestampWithMillisecond.
-// 从给定的微秒时间戳创建 Carbon 实例, 是 CreateFromTimestampWithMillisecond 的简写
-func (c Carbon) CreateFromTimestampMilli(timestamp int64, timezone ...string) Carbon {
-	return c.CreateFromTimestampWithMillisecond(timestamp, timezone...)
-}
-
-// CreateFromTimestampMilli creates a Carbon instance from a given timestamp with millisecond, it is shorthand for CreateFromTimestampWithMillisecond.
-// 从给定的微秒时间戳创建 Carbon 实例, 是 CreateFromTimestampWithMillisecond 的简写
 func CreateFromTimestampMilli(timestamp int64, timezone ...string) Carbon {
-	return CreateFromTimestampWithMillisecond(timestamp, timezone...)
+	return NewCarbon().CreateFromTimestampMilli(timestamp, timezone...)
 }
 
-// CreateFromTimestampWithMicrosecond creates a Carbon instance from a given timestamp with microsecond.
+// CreateFromTimestampMicro creates a Carbon instance from a given timestamp with microsecond.
 // 从给定的微秒级时间戳创建 Carbon 实例
-func (c Carbon) CreateFromTimestampWithMicrosecond(timestamp int64, timezone ...string) Carbon {
+func (c Carbon) CreateFromTimestampMicro(timestamp int64, timezone ...string) Carbon {
 	if len(timezone) > 0 {
 		c.loc, c.Error = getLocationByTimezone(timezone[len(timezone)-1])
 	}
@@ -79,27 +55,15 @@ func (c Carbon) CreateFromTimestampWithMicrosecond(timestamp int64, timezone ...
 	return c
 }
 
-// CreateFromTimestampWithMicrosecond creates a Carbon instance from a given timestamp with microsecond.
+// CreateFromTimestampMicro creates a Carbon instance from a given timestamp with microsecond.
 // 从给定的微秒级时间戳创建 Carbon 实例
-func CreateFromTimestampWithMicrosecond(timestamp int64, timezone ...string) Carbon {
-	return NewCarbon().CreateFromTimestampWithMicrosecond(timestamp, timezone...)
-}
-
-// CreateFromTimestampMicro creates a Carbon instance from a given timestamp with microsecond, it is shorthand for CreateFromTimestampWithMicrosecond.
-// 从给定的微秒时间戳创建 Carbon 实例, 是 CreateFromTimestampMicro 的简写
-func (c Carbon) CreateFromTimestampMicro(timestamp int64, timezone ...string) Carbon {
-	return c.CreateFromTimestampWithMicrosecond(timestamp, timezone...)
-}
-
-// CreateFromTimestampMicro creates a Carbon instance from a given timestamp with microsecond, it is shorthand for CreateFromTimestampWithMicrosecond.
-// 从给定的微秒时间戳创建 Carbon 实例, 是 CreateFromTimestampMicro 的简写
 func CreateFromTimestampMicro(timestamp int64, timezone ...string) Carbon {
-	return CreateFromTimestampWithMicrosecond(timestamp, timezone...)
+	return NewCarbon().CreateFromTimestampMicro(timestamp, timezone...)
 }
 
-// CreateFromTimestampWithNanosecond creates a Carbon instance from a given timestamp with nanosecond.
+// CreateFromTimestampNano creates a Carbon instance from a given timestamp with nanosecond.
 // 从给定的纳秒级时间戳创建 Carbon 实例
-func (c Carbon) CreateFromTimestampWithNanosecond(timestamp int64, timezone ...string) Carbon {
+func (c Carbon) CreateFromTimestampNano(timestamp int64, timezone ...string) Carbon {
 	if len(timezone) > 0 {
 		c.loc, c.Error = getLocationByTimezone(timezone[len(timezone)-1])
 	}
@@ -110,47 +74,16 @@ func (c Carbon) CreateFromTimestampWithNanosecond(timestamp int64, timezone ...s
 	return c
 }
 
-// CreateFromTimestampWithNanosecond creates a Carbon instance from a given timestamp with nanosecond.
+// CreateFromTimestampNano creates a Carbon instance from a given timestamp with nanosecond.
 // 从给定的纳秒级时间戳创建 Carbon 实例
-func CreateFromTimestampWithNanosecond(timestamp int64, timezone ...string) Carbon {
-	return NewCarbon().CreateFromTimestampWithNanosecond(timestamp, timezone...)
-}
-
-// CreateFromTimestampNano creates a Carbon instance from a given timestamp with nanosecond, it is shorthand for CreateFromTimestampWithNanosecond.
-// 从给定的纳秒时间戳创建 Carbon 实例, 是 CreateFromTimestampWithNanosecond 的简写
-func (c Carbon) CreateFromTimestampNano(timestamp int64, timezone ...string) Carbon {
-	return c.CreateFromTimestampWithNanosecond(timestamp, timezone...)
-}
-
-// CreateFromTimestampNano creates a Carbon instance from a given timestamp with nanosecond, it is shorthand for CreateFromTimestampWithNanosecond.
-// 从给定的纳秒时间戳创建 Carbon 实例, 是 CreateFromTimestampWithNanosecond 的简写
 func CreateFromTimestampNano(timestamp int64, timezone ...string) Carbon {
-	return CreateFromTimestampWithNanosecond(timestamp, timezone...)
-}
-
-// Create creates a Carbon instance from a given time.
-// 从给定的时间创建 Carbon 实例
-func (c Carbon) Create(year, month, day, hour, minute, second, nanosecond int, timezone ...string) Carbon {
-	if len(timezone) > 0 {
-		c.loc, c.Error = getLocationByTimezone(timezone[len(timezone)-1])
-	}
-	if c.Error != nil {
-		return c
-	}
-	c.time = time.Date(year, time.Month(month), day, hour, minute, second, nanosecond, c.loc)
-	return c
-}
-
-// Create creates a Carbon instance from a given time.
-// 从给定的时间创建 Carbon 实例
-func Create(year, month, day, hour, minute, second, nanosecond int, timezone ...string) Carbon {
-	return NewCarbon().Create(year, month, day, hour, minute, second, nanosecond, timezone...)
+	return NewCarbon().CreateFromTimestampNano(timestamp, timezone...)
 }
 
 // CreateFromDateTime creates a Carbon instance from a given date and time.
 // 从给定的年月日时分秒创建 Carbon 实例
 func (c Carbon) CreateFromDateTime(year, month, day, hour, minute, second int, timezone ...string) Carbon {
-	return c.Create(year, month, day, hour, minute, second, time.Now().Nanosecond(), timezone...)
+	return c.create(year, month, day, hour, minute, second, time.Now().Nanosecond(), timezone...)
 }
 
 // CreateFromDateTime creates a Carbon instance from a given date and time.
@@ -159,12 +92,48 @@ func CreateFromDateTime(year, month, day, hour, minute, second int, timezone ...
 	return NewCarbon().CreateFromDateTime(year, month, day, hour, minute, second, timezone...)
 }
 
+// CreateFromDateTimeMilli creates a Carbon instance from a given date and time with millisecond.
+// 从给定的年月日时分秒创建 Carbon 实例，包含毫秒
+func (c Carbon) CreateFromDateTimeMilli(year, month, day, hour, minute, second, millisecond int, timezone ...string) Carbon {
+	return c.create(year, month, day, hour, minute, second, millisecond*1e6, timezone...)
+}
+
+// CreateFromDateTimeMilli creates a Carbon instance from a given date and time with millisecond.
+// 从给定的年月日时分秒创建 Carbon 实例，包含毫秒
+func CreateFromDateTimeMilli(year, month, day, hour, minute, second, millisecond int, timezone ...string) Carbon {
+	return NewCarbon().CreateFromDateTimeMilli(year, month, day, hour, minute, second, millisecond, timezone...)
+}
+
+// CreateFromDateTimeMicro creates a Carbon instance from a given date and time with microsecond.
+// 从给定的年月日时分秒创建 Carbon 实例，包含微秒
+func (c Carbon) CreateFromDateTimeMicro(year, month, day, hour, minute, second, microsecond int, timezone ...string) Carbon {
+	return c.create(year, month, day, hour, minute, second, microsecond*1e3, timezone...)
+}
+
+// CreateFromDateTimeMicro creates a Carbon instance from a given date and time with microsecond.
+// 从给定的年月日时分秒创建 Carbon 实例，包含微秒
+func CreateFromDateTimeMicro(year, month, day, hour, minute, second, microsecond int, timezone ...string) Carbon {
+	return NewCarbon().CreateFromDateTimeMicro(year, month, day, hour, minute, second, microsecond, timezone...)
+}
+
+// CreateFromDateTimeNano creates a Carbon instance from a given date and time with nanosecond.
+// 从给定的年月日时分秒创建 Carbon 实例，包含纳秒
+func (c Carbon) CreateFromDateTimeNano(year, month, day, hour, minute, second, nanosecond int, timezone ...string) Carbon {
+	return c.create(year, month, day, hour, minute, second, nanosecond, timezone...)
+}
+
+// CreateFromDateTimeNano creates a Carbon instance from a given date and time with nanosecond.
+// 从给定的年月日时分秒创建 Carbon 实例，包含纳秒
+func CreateFromDateTimeNano(year, month, day, hour, minute, second, nanosecond int, timezone ...string) Carbon {
+	return NewCarbon().CreateFromDateTimeNano(year, month, day, hour, minute, second, nanosecond, timezone...)
+}
+
 // CreateFromDate creates a Carbon instance from a given date.
 // 从给定的年月日创建 Carbon 实例
 func (c Carbon) CreateFromDate(year, month, day int, timezone ...string) Carbon {
 	now := Now()
 	hour, minute, second := now.Time()
-	return c.Create(year, month, day, hour, minute, second, time.Now().Nanosecond(), timezone...)
+	return c.create(year, month, day, hour, minute, second, time.Now().Nanosecond(), timezone...)
 }
 
 // CreateFromDate creates a Carbon instance from a given date.
@@ -178,11 +147,24 @@ func CreateFromDate(year, month, day int, timezone ...string) Carbon {
 func (c Carbon) CreateFromTime(hour, minute, second int, timezone ...string) Carbon {
 	now := Now()
 	year, month, day := now.Date()
-	return c.Create(year, month, day, hour, minute, second, now.Nanosecond(), timezone...)
+	return c.create(year, month, day, hour, minute, second, now.Nanosecond(), timezone...)
 }
 
 // CreateFromTime creates a Carbon instance from a given time.
 // 从给定的时分秒创建 Carbon 实例
 func CreateFromTime(hour, minute, second int, timezone ...string) Carbon {
 	return NewCarbon().CreateFromTime(hour, minute, second, timezone...)
+}
+
+// create a Carbon instance from a given time.
+// 从给定的时间创建 Carbon 实例
+func (c Carbon) create(year, month, day, hour, minute, second, nanosecond int, timezone ...string) Carbon {
+	if len(timezone) > 0 {
+		c.loc, c.Error = getLocationByTimezone(timezone[len(timezone)-1])
+	}
+	if c.Error != nil {
+		return c
+	}
+	c.time = time.Date(year, time.Month(month), day, hour, minute, second, nanosecond, c.loc)
+	return c
 }
