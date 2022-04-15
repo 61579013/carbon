@@ -1,0 +1,39 @@
+version: '1.0'
+name: pipeline-20220415
+displayName: pipeline-20220415
+triggers:
+  trigger: auto
+  push:
+    branches:
+      prefix:
+        - master
+        - v1
+        - v2
+        - develop
+stages:
+  - name: stage-2f6a5b06
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: build@golang
+        name: build_golang
+        displayName: Golang 构建
+        golangVersion: '1.16'
+        commands:
+          - mkdir output
+          - GOOS=linux GOARCH=amd64 go build -o output/main.amd64 main.go
+          - GOOS=linux GOARCH=386 go build -o output/main.linux32 main.go
+          - GOOS=windows GOARCH=amd64 go build -o output/main.win64.exe main.go
+          - GOOS=windows GOARCH=386 go build -o output/main.win32.exe main.go
+          - GOOS=darwin GOARCH=amd64 go build -o output/main.darwin main.go
+          - chmod +X output/main.linux32
+          - ./output/main.linux32
+        artifacts:
+          - name: BUILD_ARTIFACT
+            path:
+              - ./output
+permissions:
+  - role: admin
+    members: []
