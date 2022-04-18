@@ -1304,6 +1304,7 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 | Q | Quarter | 1 | 1-4 | 1 |
 | C | Century | - | 0-99 | 21 |
 
+
 #### References
 
 * [briannesbitt/carbon](https://github.com/briannesbitt/Carbon)
@@ -1314,20 +1315,15 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 * [iamkun/dayjs](https://github.com/iamkun/dayjs)
 
 #### Contributors
-
 This project exists thanks to all the people who contribute.
 
 <a href="https://github.com/golang-module/carbon/graphs/contributors"><img src="https://contributors-img.web.app/image?repo=golang-module/carbon" height=40px/></a>
 
 #### Sponsors
 
-`Carbon` is an open source project that runs on donations to pay the bills e.g. our domain name, gitbook, netlify and
-server hosting. If you want to support Carbon, you can [buy a cup of coffee](https://www.gouguoyin.cn/zanzhu.html) for
-developer.
+`Carbon` is an open source project that runs on donations to pay the bills e.g. our domain name, gitbook, netlify and serverless hosting. If you want to support Carbon, you can [buy developer a cup of coffee](https://www.gouguoyin.cn/zanzhu.html)
 
 #### Thanks
-
-`Carbon` had been being developed with GoLand under the free JetBrains Open Source license, I would like to express my
-thanks here.
+`Carbon` had been being developed with GoLand under the free JetBrains Open Source license(s) granted by JetBrains s.r.o., hence I would like to express my thanks here.
 
 <a href="https://www.jetbrains.com"><img src="https://raw.githubusercontent.com/panjf2000/illustrations/master/jetbrains/jetbrains-variant-4.png" height="100" alt="JetBrains"/></a>
