@@ -1327,6 +1327,6 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 
 #### 致谢
 
-`Carbon`已获取免费的 JetBrains 开源许可证，在此表示感谢。
+`Carbon`已获取免费的 JetBrains 开源许可证，在此表示感谢
 
 <a href="https://www.jetbrains.com"><img src="https://raw.githubusercontent.com/panjf2000/illustrations/master/jetbrains/jetbrains-variant-4.png" height="100" alt="JetBrains"/></a>
