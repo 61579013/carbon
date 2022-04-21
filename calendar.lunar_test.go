@@ -477,7 +477,7 @@ func TestLunar_ToDateString(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().ToDateString(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -504,7 +504,7 @@ func TestLunar_IsLeapYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsLeapYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -557,7 +557,7 @@ func TestLunar_IsRatYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsRatYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -583,7 +583,7 @@ func TestLunar_IsOxYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsOxYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -610,7 +610,7 @@ func TestLunar_IsTigerYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsTigerYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -637,7 +637,7 @@ func TestLunar_IsRabbitYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsRabbitYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -664,7 +664,7 @@ func TestLunar_IsDragonYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsDragonYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -691,7 +691,7 @@ func TestLunar_IsSnakeYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsSnakeYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -718,7 +718,7 @@ func TestLunar_IsHorseYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsHorseYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -745,7 +745,7 @@ func TestLunar_IsGoatYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsGoatYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -772,7 +772,7 @@ func TestLunar_IsMonkeyYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsMonkeyYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -799,7 +799,7 @@ func TestLunar_IsRoosterYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsRoosterYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -826,7 +826,7 @@ func TestLunar_IsDogYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsDogYear(), "Current test index is "+strconv.Itoa(index))
 	}
@@ -853,16 +853,10 @@ func TestLunar_IsPigYear(t *testing.T) {
 	}
 
 	for index, test := range tests {
-		c := Parse(test.input)
+		c := Parse(test.input, PRC)
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsPigYear(), "Current test index is "+strconv.Itoa(index))
 	}
-}
-
-func TestError_Lunar(t *testing.T) {
-	year, month, day := 1840, 1, 1
-	c := CreateFromDate(year, month, day).Lunar()
-	assert.NotNil(t, c.Error, "It should catch an exception in Lunar()")
 }
 
 func TestLunar_DoubleHour(t *testing.T) {
@@ -1199,4 +1193,10 @@ func TestLunar_IsTwelfthDoubleHour(t *testing.T) {
 		assert.Nil(c.Error)
 		assert.Equal(test.expected, c.Lunar().IsTwelfthDoubleHour(), "Current test index is "+strconv.Itoa(index))
 	}
+}
+
+func TestError_Lunar(t *testing.T) {
+	year, month, day, timezone := 1840, 1, 1, "xxx"
+	c := CreateFromDate(year, month, day, timezone).Lunar()
+	assert.NotNil(t, c.Error, "It should catch an exception in Lunar()")
 }

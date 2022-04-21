@@ -54,23 +54,26 @@ type lunar struct {
 // Lunar converts the gregorian calendar to the lunar calendar.
 // 将公历转为农历
 func (c Carbon) Lunar() (l lunar) {
-	carbon := c.SetTimezone(PRC)
-	l.isInvalid = false
-	if carbon.IsInvalid() {
-		l.Error = carbon.Error
+	l.isInvalid, l.isLeapMonth = false, false
+	if c.Error != nil {
+		l.Error = c.Error
+		l.isInvalid = true
+		return
+	}
+	if c.IsZero() {
 		l.isInvalid = true
 		return
 	}
 	// leapMonths:闰月总数，daysOfYear:年天数，daysOfMonth:月天数，leapMonth:闰月月份
 	daysInYear, daysInMonth, leapMonth := 365, 30, 0
 	// 有效范围检验
-	year := carbon.Year()
+	year := c.Year()
 	if year < minYear || year > maxYear {
 		l.Error = invalidYearError(year)
 		l.isInvalid = true
 		return
 	}
-	offset := int(carbon.DiffAbsInDays(carbon.CreateFromDateTime(minYear, 1, 31, 0, 0, 0)))
+	offset := int(c.DiffAbsInDays(c.CreateFromDateTime(minYear, 1, 31, 0, 0, 0)))
 	for l.year = minYear; l.year <= maxYear && offset > 0; l.year++ {
 		daysInYear = l.getDaysInYear()
 		offset -= daysInYear
@@ -79,7 +82,6 @@ func (c Carbon) Lunar() (l lunar) {
 		offset += daysInYear
 		l.year--
 	}
-	l.isLeapMonth = false
 	leapMonth = l.LeapMonth()
 	for l.month = 1; l.month <= 12 && offset > 0; l.month++ {
 		if leapMonth > 0 && l.month == (leapMonth+1) && !l.isLeapMonth {
@@ -109,7 +111,7 @@ func (c Carbon) Lunar() (l lunar) {
 		l.month--
 	}
 	l.day = offset + 1
-	l.hour, l.minute, l.second = carbon.Time()
+	l.hour, l.minute, l.second = c.Time()
 	return
 }
 
