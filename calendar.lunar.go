@@ -267,7 +267,7 @@ func (l lunar) ToYearString() string {
 	return year
 }
 
-// ToMonthString outputs a string in lunar month format like "正".
+// ToMonthString outputs a string in lunar month format like "正月".
 // 获取农历月字符串
 func (l lunar) ToMonthString() string {
 	if l.isInvalid {
