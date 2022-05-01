@@ -11,7 +11,7 @@ func TestCarbon_DaysInYear(t *testing.T) {
 	assert := assert.New(t)
 
 	tests := []struct {
-		input    string // 输入值1
+		input    string // 输入值
 		expected int    // 期望值
 	}{
 		{"", 0},
