@@ -5,7 +5,7 @@ import (
 )
 
 // DaysInYear gets total days in year like 365.
-// 获取本年的总天数
+// 获取本年的总天数1
 func (c Carbon) DaysInYear() int {
 	if c.IsInvalid() {
 		return 0
