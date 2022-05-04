@@ -1,4 +1,4 @@
-module gitee.com/go-package/carbon/v2
+module gitee.com/golang-module/carbon/v2
 
 go 1.16
 
