@@ -33,7 +33,7 @@ import (
 go get -u gitee.com/golang-module/carbon/v2
 
 import (
-"gitee.com/golang-module/carbon/v2"
+    "gitee.com/golang-module/carbon/v2"
 )
 ```
 
@@ -44,14 +44,14 @@ import (
 go get -u github.com/golang-module/carbon
 
 import (
-"github.com/golang-module/carbon"
+    "github.com/golang-module/carbon"
 )
 
 // gitee倉庫を使う
 go get -u gitee.com/golang-module/carbon
 
 import (
-"gitee.com/golang-module/carbon"
+    "gitee.com/golang-module/carbon"
 )
 ```
 
