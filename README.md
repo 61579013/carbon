@@ -1180,20 +1180,20 @@ carbon.Parse("2020-03-21 21:00:00").Lunar().IsTwelfthDoubleHour() // true
 
 ```go
 type Person struct {
-Name string `json:"name"`
-Age int `json:"age"`
-Birthday1 carbon.DateTime `json:"birthday"`
-Birthday2 carbon.DateTimeMilli `json:"birthday"`
-Birthday3 carbon.DateTimeMicro `json:"birthday"`
-Birthday4 carbon.DateTimeNano `json:"birthday"`
-GraduatedAt1 carbon.Date `json:"graduated_at"`
-GraduatedAt2 carbon.DateMilli `json:"graduated_at"`
-GraduatedAt3 carbon.DateMicro `json:"graduated_at"`
-GraduatedAt4 carbon.DateNano `json:"graduated_at"`
-CreatedAt1 carbon.Timestamp `json:"created_at1"`
-CreatedAt2 carbon.TimestampMilli `json:"created_at2"`
-CreatedAt3 carbon.TimestampMicro `json:"created_at3"`
-CreatedAt4 carbon.TimestampNano `json:"created_at4"`
+	Name string `json:"name"`
+	Age int `json:"age"`
+	Birthday1 carbon.DateTime `json:"birthday"`
+	Birthday2 carbon.DateTimeMilli `json:"birthday"`
+	Birthday3 carbon.DateTimeMicro `json:"birthday"`
+	Birthday4 carbon.DateTimeNano `json:"birthday"`
+	GraduatedAt1 carbon.Date `json:"graduated_at"`
+	GraduatedAt2 carbon.DateMilli `json:"graduated_at"`
+	GraduatedAt3 carbon.DateMicro `json:"graduated_at"`
+	GraduatedAt4 carbon.DateNano `json:"graduated_at"`
+	CreatedAt1 carbon.Timestamp `json:"created_at1"`
+	CreatedAt2 carbon.TimestampMilli `json:"created_at2"`
+	CreatedAt3 carbon.TimestampMicro `json:"created_at3"`
+	CreatedAt4 carbon.TimestampNano `json:"created_at4"`
 }
 ```
 
