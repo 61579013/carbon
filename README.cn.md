@@ -44,16 +44,18 @@ import (
 go get -u github.com/golang-module/carbon
 
 import (
-    "github.com/golang-module/carbon"
+"github.com/golang-module/carbon"
 )
 
 // 使用 gitee 库
 go get -u gitee.com/golang-module/carbon
 
 import (
-    "gitee.com/golang-module/carbon"
+"gitee.com/golang-module/carbon"
 )
 ```
+
+> v1 和 v2 版本区别请查阅 <a href="#常见问题">常见问题</a>
 
 #### 用法示例
 
@@ -624,6 +626,34 @@ carbon.Parse("2020-08-05").IsToday() // true
 carbon.Parse("2020-08-06 13:14:15").IsTomorrow() // true
 carbon.Parse("2020-08-06 00:00:00").IsTomorrow() // true
 carbon.Parse("2020-08-06").IsTomorrow() // true
+
+// 是否是同一世纪
+carbon.Parse("2020-08-05 13:14:15").IsSameCentury(carbon.Parse("3020-08-05 13:14:15")) // false
+carbon.Parse("2020-08-05 13:14:15").IsSameCentury(carbon.Parse("2099-08-05 13:14:15")) // true
+// 是否是同一年代
+carbon.Parse("2020-08-05 13:14:15").IsSameDecade(carbon.Parse("2030-08-05 13:14:15")) // false
+carbon.Parse("2020-08-05 13:14:15").IsSameDecade(carbon.Parse("2120-08-05 13:14:15")) // true
+// 是否是同一年
+carbon.Parse("2020-08-05 00:00:00").IsSameYear(carbon.Parse("2021-08-05 13:14:15")) // false
+carbon.Parse("2020-01-01 00:00:00").IsSameYear(carbon.Parse("2020-12-31 13:14:15")) // true
+// 是否是同一季节
+carbon.Parse("2020-08-05 00:00:00").IsSameQuarter(carbon.Parse("2020-09-05 13:14:15")) // false
+carbon.Parse("2020-01-01 00:00:00").IsSameQuarter(carbon.Parse("2021-01-31 13:14:15")) // true
+// 是否是同一月
+carbon.Parse("2020-01-01 00:00:00").IsSameMonth(carbon.Parse("2021-01-31 13:14:15")) // false
+carbon.Parse("2020-01-01 00:00:00").IsSameMonth(carbon.Parse("2020-01-31 13:14:15")) // true
+// 是否是同一天
+carbon.Parse("2020-08-05 13:14:15").IsSameDay(carbon.Parse("2021-08-05 13:14:15")) // false
+carbon.Parse("2020-08-05 00:00:00").IsSameDay(carbon.Parse("2020-08-05 13:14:15")) // true
+// 是否是同一小时
+carbon.Parse("2020-08-05 13:14:15").IsSameHour(carbon.Parse("2021-08-05 13:14:15")) // false
+carbon.Parse("2020-08-05 13:00:00").IsSameHour(carbon.Parse("2020-08-05 13:14:15")) // true
+// 是否是同一分钟
+carbon.Parse("2020-08-05 13:14:15").IsSameMinute(carbon.Parse("2021-08-05 13:14:15")) // false
+carbon.Parse("2020-08-05 13:14:00").IsSameMinute(carbon.Parse("2020-08-05 13:14:15")) // true
+// 是否是同一秒
+carbon.Parse("2020-08-05 13:14:15").IsSameSecond(carbon.Parse("2021-08-05 13:14:15")) // false
+carbon.Parse("2020-08-05 13:14:15").IsSameSecond(carbon.Parse("2020-08-05 13:14:15")) // true
 
 // 是否大于
 carbon.Parse("2020-08-05 13:14:15").Gt(carbon.Parse("2020-08-04 13:14:15")) // true
@@ -1205,22 +1235,21 @@ type Person struct {
 ###### 实例化模型
 
 ```go
-now := carbon.Now()
 person := Person {
 	Name:        "gouguoyin",
 	Age:          18,
-	Birthday1:    carbon.DateTime{now.SubYears(18)},
-	Birthday2:    carbon.DateTime{now.SubYears(18)},
-	Birthday3:    carbon.DateTime{now.SubYears(18)},
-	Birthday4:    carbon.DateTime{now.SubYears(18)},
-	GraduatedAt1: carbon.Date{now},
-	GraduatedAt2: carbon.Date{now},
-	GraduatedAt3: carbon.Date{now},
-	GraduatedAt4: carbon.Date{now},
-	CreatedAt1:   carbon.Timestamp{now},
-	CreatedAt2:   carbon.TimestampMilli{now},
-	CreatedAt3:   carbon.TimestampMicro{now},
-	CreatedAt4:   carbon.TimestampNano{now},
+	Birthday1:    carbon.DateTime{carbon.Now().SubYears(18)},
+	Birthday2:    carbon.DateTime{carbon.Now().SubYears(18)},
+	Birthday3:    carbon.DateTime{carbon.Now().SubYears(18)},
+	Birthday4:    carbon.DateTime{carbon.Now().SubYears(18)},
+	GraduatedAt1: carbon.Date{carbon.Now()},
+	GraduatedAt2: carbon.Date{carbon.Now()},
+	GraduatedAt3: carbon.Date{carbon.Now()},
+	GraduatedAt4: carbon.Date{carbon.Now()},
+	CreatedAt1:   carbon.Timestamp{carbon.Now()},
+	CreatedAt2:   carbon.TimestampMilli{carbon.Now()},
+	CreatedAt3:   carbon.TimestampMicro{carbon.Now()},
+	CreatedAt4:   carbon.TimestampNano{carbon.Now()},
 }
 ```
 
@@ -1245,10 +1274,10 @@ fmt.Printf("%s", data)
     "graduated_at2": "2020-08-05.999",
     "graduated_at3": "2020-08-05.999999",
     "graduated_at4": "2020-08-05.999999999",
-    "created_at1": 1596604455,
-    "created_at2": 1596604455999,
-    "created_at3": 1596604455999999,
-    "created_at4": 1596604455999999999
+	"created_at1": 1596604455,
+	"created_at2": 1596604455999,
+	"created_at3": 1596604455999999,
+	"created_at4": 1596604455999999999
 }
 ```
 
@@ -1297,6 +1326,7 @@ fmt.Printf("%+v", *person)
 * [葡萄牙语(pt)](./lang/pt.json "葡萄牙语"): 由 [felipear89](https://github.com/felipear89 "felipear89") 翻译
 * [俄罗斯语(ru)](./lang/ru.json "俄罗斯语"): 由 [zemlyak](https://github.com/zemlyak "zemlyak") 翻译
 * [乌克兰语(uk)](./lang/uk.json "乌克兰语"): 由 [open-git](https://github.com/open-git "open-git") 翻译
+* [罗马尼亚语(ro)](./lang/ro.json "罗马尼亚语"): 由 [DrOctavius](https://github.com/DrOctavius "DrOctavius") 翻译
 
 目前支持的方法有
 
@@ -1450,6 +1480,13 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 | Q | 当前季节 | 1 | 1-4 | 1 |
 | C | 当前世纪数 | - | 0-99 | 21 |
 
+#### 常见问题
+
+1、v1 和 v2 版本有什么区别？
+> v1 和 v2 版本的 API 没有任何区别，只是 `language.go` 里翻译资源文件内嵌的实现方式不同，v1 版本是由第三方扩展库 [packr](https://github.com/gobuffalo/packr)
+> 实现的，v2
+> 版本是由 `golang1.16` 后内置标准库 [embed](https://pkg.go.dev/embed) 实现的，推荐使用 v2 版本。
+
 #### 参考项目
 
 * [briannesbitt/carbon](https://github.com/briannesbitt/Carbon)
@@ -1460,9 +1497,10 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 * [iamkun/dayjs](https://github.com/iamkun/dayjs)
 
 #### 贡献者
+
 感谢以下所有为 `Carbon` 做出贡献的人：
 
-<a href="https://github.com/golang-module/carbon/graphs/contributors"><img src="https://contrib.rocks/image?repo=golang-module/carbon&max=120&columns=16"/></a>
+<a href="https://github.com/golang-module/carbon/graphs/contributors"><img src="https://contrib.rocks/image?repo=golang-module/carbon&max=100&columns=16"/></a>
 
 #### 赞助
 
