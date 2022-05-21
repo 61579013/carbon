@@ -26,14 +26,14 @@ Carbon は [awesome-go](https://github.com/avelino/awesome-go#date-and-time "awe
 go get -u github.com/golang-module/carbon/v2
 
 import (
-    "github.com/golang-module/carbon/v2"
+	"github.com/golang-module/carbon/v2"
 )
 
 // gitee倉庫を使う
 go get -u gitee.com/golang-module/carbon/v2
 
 import (
-    "gitee.com/golang-module/carbon/v2"
+	"gitee.com/golang-module/carbon/v2"
 )
 ```
 
@@ -44,14 +44,14 @@ import (
 go get -u github.com/golang-module/carbon
 
 import (
-    "github.com/golang-module/carbon"
+	"github.com/golang-module/carbon"
 )
 
 // gitee倉庫を使う
 go get -u gitee.com/golang-module/carbon
 
 import (
-    "gitee.com/golang-module/carbon"
+	"gitee.com/golang-module/carbon"
 )
 ```
 > v1とv2の違いについては、<a href="#人気のある問題">人気のある問題</a>をご覧ください。
@@ -1493,7 +1493,6 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 * [iamkun/dayjs](https://github.com/iamkun/dayjs)
 
 #### 寄稿者
-
 `Carbon` に貢献してくれた以下のすべてに感謝します：
 
 <a href="https://github.com/golang-module/carbon/graphs/contributors"><img src="https://contrib.rocks/image?repo=golang-module/carbon&max=100&columns=16"/></a>
