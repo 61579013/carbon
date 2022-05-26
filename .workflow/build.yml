@@ -1,6 +1,6 @@
 version: '1.0'
 name: pipeline-20220526
-displayName: pipeline-20220526
+displayName: build
 triggers:
   trigger: auto
   push:
@@ -9,7 +9,7 @@ triggers:
         - ''
 stages:
   - name: stage-b1aba9ab
-    displayName: 未命名
+    displayName: build
     strategy: naturally
     trigger: auto
     executor: []
