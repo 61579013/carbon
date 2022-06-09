@@ -1342,8 +1342,8 @@ lang.SetLocale("en")
 
 c := carbon.SetLanguage(lang)
 if c.Error != nil {
-// Error handle...
-log.Fatal(err)
+	// Error handle...
+	log.Fatal(err)
 }
 
 c.Now().AddHours(1).DiffForHumans() // 1 hour from now
