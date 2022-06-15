@@ -26,14 +26,14 @@ Carbon 已被 [awesome-go-cn](https://github.com/yinggaozhen/awesome-go-cn#日�
 go get -u github.com/golang-module/carbon/v2
 
 import (
-	"github.com/golang-module/carbon/v2"
+"github.com/golang-module/carbon/v2"
 )
 
 // 使用 gitee 库
 go get -u gitee.com/golang-module/carbon/v2
 
 import (
-	"gitee.com/golang-module/carbon/v2"
+"gitee.com/golang-module/carbon/v2"
 )
 ```
 
@@ -44,14 +44,14 @@ import (
 go get -u github.com/golang-module/carbon
 
 import (
-	"github.com/golang-module/carbon"
+"github.com/golang-module/carbon"
 )
 
 // 使用 gitee 库
 go get -u gitee.com/golang-module/carbon
 
 import (
-	"gitee.com/golang-module/carbon"
+"gitee.com/golang-module/carbon"
 )
 ```
 
@@ -1214,20 +1214,20 @@ carbon.Parse("2020-03-21 21:00:00").Lunar().IsTwelfthDoubleHour() // true
 
 ```go
 type Person struct {
-	Name string `json:"name"`
-	Age int `json:"age"`
-	Birthday1 carbon.DateTime `json:"birthday"`
-	Birthday2 carbon.DateTimeMilli `json:"birthday"`
-	Birthday3 carbon.DateTimeMicro `json:"birthday"`
-	Birthday4 carbon.DateTimeNano `json:"birthday"`
-	GraduatedAt1 carbon.Date `json:"graduated_at"`
-	GraduatedAt2 carbon.DateMilli `json:"graduated_at"`
-	GraduatedAt3 carbon.DateMicro `json:"graduated_at"`
-	GraduatedAt4 carbon.DateNano `json:"graduated_at"`
-	CreatedAt1 carbon.Timestamp `json:"created_at1"`
-	CreatedAt2 carbon.TimestampMilli `json:"created_at2"`
-	CreatedAt3 carbon.TimestampMicro `json:"created_at3"`
-	CreatedAt4 carbon.TimestampNano `json:"created_at4"`
+Name string `json:"name"`
+Age int `json:"age"`
+Birthday1 carbon.DateTime `json:"birthday"`
+Birthday2 carbon.DateTimeMilli `json:"birthday"`
+Birthday3 carbon.DateTimeMicro `json:"birthday"`
+Birthday4 carbon.DateTimeNano `json:"birthday"`
+GraduatedAt1 carbon.Date `json:"graduated_at"`
+GraduatedAt2 carbon.DateMilli `json:"graduated_at"`
+GraduatedAt3 carbon.DateMicro `json:"graduated_at"`
+GraduatedAt4 carbon.DateNano `json:"graduated_at"`
+CreatedAt1 carbon.Timestamp `json:"created_at1"`
+CreatedAt2 carbon.TimestampMilli `json:"created_at2"`
+CreatedAt3 carbon.TimestampMicro `json:"created_at3"`
+CreatedAt4 carbon.TimestampNano `json:"created_at4"`
 }
 ```
 
@@ -1257,26 +1257,26 @@ person := Person {
 ```go
 data, err := json.Marshal(&person)
 if err != nil {
-	// 错误处理
-	log.Fatal(err)
+// 错误处理
+log.Fatal(err)
 }
 fmt.Printf("%s", data)
 // 输出
 {
-	"name": "gouguoyin",
-	"age": 18,
-	"birthday1": "2003-07-16 16:22:02",
-	"birthday2": "2003-07-16 16:22:02.999",
-	"birthday3": "2003-07-16 16:22:02.999999",
-	"birthday4": "2003-07-16 16:22:02.999999999",
-	"graduated_at1": "2020-08-05",
-	"graduated_at2": "2020-08-05.999",
-	"graduated_at3": "2020-08-05.999999",
-	"graduated_at4": "2020-08-05.999999999",
-	"created_at1": 1596604455,
-	"created_at2": 1596604455999,
-	"created_at3": 1596604455999999,
-	"created_at4": 1596604455999999999
+"name": "gouguoyin",
+"age": 18,
+"birthday1": "2003-07-16 16:22:02",
+"birthday2": "2003-07-16 16:22:02.999",
+"birthday3": "2003-07-16 16:22:02.999999",
+"birthday4": "2003-07-16 16:22:02.999999999",
+"graduated_at1": "2020-08-05",
+"graduated_at2": "2020-08-05.999",
+"graduated_at3": "2020-08-05.999999",
+"graduated_at4": "2020-08-05.999999999",
+"created_at1": 1596604455,
+"created_at2": 1596604455999,
+"created_at3": 1596604455999999,
+"created_at4": 1596604455999999999
 }
 ```
 
@@ -1302,8 +1302,8 @@ str := `{
 person := new(Person)
 err := json.Unmarshal([]byte(str), &person)
 if err != nil {
-	// 错误处理
-	log.Fatal(err)
+// 错误处理
+log.Fatal(err)
 }
 fmt.Printf("%+v", *person)
 // 输出
@@ -1326,6 +1326,7 @@ fmt.Printf("%+v", *person)
 * [俄罗斯语(ru)](./lang/ru.json "俄罗斯语"): 由 [zemlyak](https://github.com/zemlyak "zemlyak") 翻译
 * [乌克兰语(uk)](./lang/uk.json "乌克兰语"): 由 [open-git](https://github.com/open-git "open-git") 翻译
 * [罗马尼亚语(ro)](./lang/ro.json "罗马尼亚语"): 由 [DrOctavius](https://github.com/DrOctavius "DrOctavius") 翻译
+* [印度尼西亚语(id)](./lang/id.json "印度尼西亚语"): 由 [justpoypoy](https://github.com/justpoypoy "justpoypoy") 翻译
 
 目前支持的方法有
 
@@ -1390,24 +1391,24 @@ c.Now().Season() // Summer
 ```go
 lang := carbon.NewLanguage()
 resources := map[string]string {
-	"months": "january|february|march|april|may|june|july|august|september|october|november|december",
-	"short_months": "jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec",
-	"weeks": "sunday|monday|tuesday|wednesday|thursday|friday|saturday",
-	"short_weeks": "sun|mon|tue|wed|thu|fri|sat",
-	"seasons": "spring|summer|autumn|winter",
-	"constellations": "aries|taurus|gemini|cancer|leo|virgo|libra|scorpio|sagittarius|capricornus|aquarius|pisce",
-	"year": "1 yr|%d yrs",
-	"month": "1 mo|%d mos",
-	"week": "%dw",
-	"day": "%dd",
-	"hour": "%dh",
-	"minute": "%dm",
-	"second": "%ds",
-	"now": "just now",
-	"ago": "%s ago",
-	"from_now": "in %s",
-	"before": "%s before",
-	"after": "%s after",
+"months": "january|february|march|april|may|june|july|august|september|october|november|december",
+"short_months": "jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec",
+"weeks": "sunday|monday|tuesday|wednesday|thursday|friday|saturday",
+"short_weeks": "sun|mon|tue|wed|thu|fri|sat",
+"seasons": "spring|summer|autumn|winter",
+"constellations": "aries|taurus|gemini|cancer|leo|virgo|libra|scorpio|sagittarius|capricornus|aquarius|pisce",
+"year": "1 yr|%d yrs",
+"month": "1 mo|%d mos",
+"week": "%dw",
+"day": "%dd",
+"hour": "%dh",
+"minute": "%dm",
+"second": "%ds",
+"now": "just now",
+"ago": "%s ago",
+"from_now": "in %s",
+"before": "%s before",
+"after": "%s after",
 }
 lang.SetResources(resources)
 
@@ -1429,8 +1430,8 @@ c.Now().Season() // summer
 ```go
 c := carbon.SetTimezone("xxx").Parse("2020-08-05")
 if c.Error != nil {
-	// 错误处理...
-	log.Fatal(c.Error)
+// 错误处理...
+log.Fatal(c.Error)
 }
 fmt.Println(c.ToDateTimeString())
 // 输出
@@ -1484,7 +1485,7 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 1、v1 和 v2 版本有什么区别？
 > v1 和 v2 版本的 API 没有任何区别，只是 `language.go` 里翻译资源文件内嵌的实现方式不同，v1 版本是由第三方扩展库 [packr](https://github.com/gobuffalo/packr)
 > 实现的，
-> v2 版本是由 `golang1.16` 后内置标准库 [embed](https://pkg.go.dev/embed) 实现的，推荐使用 v2 版本。
+> v2 版本是由 `golang1.16` 后内置标准库 [embed](https://pkg.go.dev/embed) 实现的。如果你的 go 版本大于 1.16推荐使用 v2 版本，否则必须使用 v1 版本。
 
 #### 参考项目
 

@@ -1323,6 +1323,8 @@ The following languages are supported
 * [Russian(ru)](./lang/ru.json "Russian"): translated by [zemlyak](https://github.com/zemlyak "zemlyak")
 * [Ukrainian(uk)](./lang/uk.json "Ukrainian"): translated by [open-git](https://github.com/open-git "open-git")
 * [Romanian(ro)](./lang/ro.json "Romanian"): translated by [DrOctavius](https://github.com/DrOctavius "DrOctavius")
+* [Romanian(ro)](./lang/ro.json "Romanian"): translated by [DrOctavius](https://github.com/DrOctavius "DrOctavius")
+* [Indonesian(id)](./lang/id.json "Indonesian"): translated by [justpoypoy](https://github.com/justpoypoy "justpoypoy")
 
 The following methods are supported
 
@@ -1342,8 +1344,8 @@ lang.SetLocale("en")
 
 c := carbon.SetLanguage(lang)
 if c.Error != nil {
-	// Error handle...
-	log.Fatal(err)
+    // Error handle...
+    log.Fatal(err)
 }
 
 c.Now().AddHours(1).DiffForHumans() // 1 hour from now
@@ -1479,10 +1481,7 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 #### FAQ
 
 1、What is the difference between v1 and v2?
-> There is no difference between v1 and v2 of the API, but the implementation of the translation resource files
-> in `language.go` is different. The v1 is implemented by the third-party extension
-> library [packr](https://github.com/gobuffalo/packr), and the v2 is implemented by the standard
-> library [embed](https://pkg.go.dev/embed) after `golang1.16`. The v2 is recommended.
+> There is no difference between v1 and v2 of the API, but the implementation of the translation resource files in `language.go` is different. The v1 is implemented by the third-party extension library [packr](https://github.com/gobuffalo/packr), and the v2 is implemented by the standard library [embed](https://pkg.go.dev/embed) after `golang1.16`. If your golang version is `1.16+`, the v2 is recommended, otherwise, the v1 is required.
 
 #### References
 
