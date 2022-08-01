@@ -718,6 +718,12 @@ carbon.SetTimezone(carbon.PRC).Now().ToDateTimeString() // 2020-08-05 13:14:15
 carbon.SetTimezone(carbon.Tokyo).Now().ToDateTimeString() // 2020-08-05 14:14:15
 carbon.SetTimezone(carbon.Tokyo).Now().SetTimezone(carbon.PRC).ToDateTimeString() // 2020-08-05 12:14:15
 
+// 设置地区
+utc, _ := time.LoadLocation(carbon.UTC)
+carbon.SetLocation(utc).Now().ToDateTimeString() // 2022-06-28 09:25:38
+tokyo, _ := time.LoadLocation(carbon.Tokyo)
+carbon.SetLocation(tokyo).Now().ToDateTimeString() // 2022-06-28 18:25:38
+
 // 设置区域
 carbon.Parse("2020-07-05 13:14:15").SetLocale("en").DiffForHumans() // 1 month ago
 carbon.Parse("2020-07-05 13:14:15").SetLocale("zh-CN").DiffForHumans() // 1 月前
@@ -1213,7 +1219,7 @@ carbon.Parse("2020-03-21 21:00:00").Lunar().IsTwelfthDoubleHour() // true
 ###### 定义模型
 
 ```go
-type Person struct {
+	type Person struct {
 	Name string `json:"name"`
 	Age int `json:"age"`
 	Birthday1 carbon.DateTime `json:"birthday"`
@@ -1326,6 +1332,7 @@ fmt.Printf("%+v", *person)
 * [俄罗斯语(ru)](./lang/ru.json "俄罗斯语"): 由 [zemlyak](https://github.com/zemlyak "zemlyak") 翻译
 * [乌克兰语(uk)](./lang/uk.json "乌克兰语"): 由 [open-git](https://github.com/open-git "open-git") 翻译
 * [罗马尼亚语(ro)](./lang/ro.json "罗马尼亚语"): 由 [DrOctavius](https://github.com/DrOctavius "DrOctavius") 翻译
+* [印度尼西亚语(id)](./lang/id.json "印度尼西亚语"): 由 [justpoypoy](https://github.com/justpoypoy "justpoypoy") 翻译
 
 目前支持的方法有
 
@@ -1441,50 +1448,50 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 
 ##### <a id="format-sign-table">格式化符号表</a>
 
-| 符号 | 描述 |  长度 | 范围 | 示例 |
-| :------------: | :------------: | :------------: | :------------: | :------------: |
-| d | 月份中的第几天，有前导零 | 2 | 01-31 | 02 |
-| D | 缩写单词表示的周几 | 3 | Mon-Sun | Mon |
-| j | 月份中的第几天，没有前导零 | - |1-31 | 2 |
-| S | 第几天的英文缩写后缀，一般和j配合使用 | 2 | st/nd/rd/th | th |
-| l | 完整单词表示的周几 | - | Monday-Sunday | Monday |
-| F | 完整单词表示的月份 | - | January-December | January |
-| m | 数字表示的月份，有前导零 | 2 | 01-12 | 01 |
-| M | 缩写单词表示的月份 | 3 | Jan-Dec | Jan |
-| n | 数字表示的月份，没有前导零 | - | 1-12 | 1 |
-| Y | 4 位数字完整表示的年份 | 4 | 0000-9999 | 2006 |
-| y | 2 位数字表示的年份 | 2 | 00-99 | 06 |
-| a | 小写的上午和下午标识 | 2 | am/pm | pm |
-| A | 大写的上午和下午标识 | 2 | AM/PM | PM |
-| g | 小时，12 小时格式 | - | 1-12 | 3 |
-| G | 小时，24 小时格式 | - | 0-23 | 15 |
-| h | 小时，12 小时格式 | 2 | 00-11 | 03 |
-| H | 小时，24 小时格式 | 2 | 00-23 | 15 |
-| i | 分钟 | 2 | 01-59 | 04 |
-| s | 秒数 | 2 | 01-59 | 05 |
-| c | ISO8601 格式日期 | - | - | 2006-01-02T15:04:05-07:00 |
-| r | RFC2822 格式日期 | - | - | Mon, 02 Jan 2006 15:04:05 -0700 |
-| O | 与格林威治时间相差的小时数 | - | - | -0700 |
-| P | 与格林威治时间相差的小时数，小时和分钟之间有冒号分隔 | - | - | +07:00 |
-| T | 时区缩写 | - | - | MST |
-| W | ISO8601 格式数字表示的年份中的第几周 | - | 1-52 | 1 |
-| N | ISO8601 格式数字表示的星期中的第几天 | 1 | 1-7 | 1 |
-| L | 是否为闰年，如果是闰年为 1，否则为 0 | 1 | 0-1 | 0 |
-| U | 秒级时间戳 | 10 | - | 1611818268 |
-| u | 毫秒 | 3 | 000-999 | 999 |
-| w | 数字表示的周几 | 1 | 0-6 | 1 |
-| t | 月份中的总天数 | 2 | 28-31 | 31 |
-| z | 年份中的第几天 | - | 0-365 | 2 |
-| e | 当前位置 | - | - | America/New_York |
-| Q | 当前季节 | 1 | 1-4 | 1 |
-| C | 当前世纪数 | - | 0-99 | 21 |
+| 符号 | 描述 | 长度 |        范围        | 示例 |
+| :------------: | :------------: |:--:|:----------------:| :------------: |
+| d | 月份中的第几天，有前导零 |  2 |      01-31       | 02 |
+| D | 缩写单词表示的周几 |  3 |     Mon-Sun      | Mon |
+| j | 月份中的第几天，没有前导零 |  - |       1-31       | 2 |
+| S | 第几天的英文缩写后缀，一般和j配合使用 |  2 |   st/nd/rd/th    | th |
+| l | 完整单词表示的周几 |  - |  Monday-Sunday   | Monday |
+| F | 完整单词表示的月份 |  - | January-December | January |
+| m | 数字表示的月份，有前导零 |  2 |      01-12       | 01 |
+| M | 缩写单词表示的月份 |  3 |     Jan-Dec      | Jan |
+| n | 数字表示的月份，没有前导零 |  - |       1-12       | 1 |
+| Y | 4 位数字完整表示的年份 |  4 |    0000-9999     | 2006 |
+| y | 2 位数字表示的年份 |  2 |      00-99       | 06 |
+| a | 小写的上午和下午标识 |  2 |      am/pm       | pm |
+| A | 大写的上午和下午标识 |  2 |      AM/PM       | PM |
+| g | 小时，12 小时格式 |  - |       1-12       | 3 |
+| G | 小时，24 小时格式 |  - |       0-23       | 15 |
+| h | 小时，12 小时格式 |  2 |      00-11       | 03 |
+| H | 小时，24 小时格式 |  2 |      00-23       | 15 |
+| i | 分钟 |  2 |      01-59       | 04 |
+| s | 秒数 |  2 |      01-59       | 05 |
+| c | ISO8601 格式日期 |  - |        -         | 2006-01-02T15:04:05-07:00 |
+| r | RFC2822 格式日期 |  - |        -         | Mon, 02 Jan 2006 15:04:05 -0700 |
+| O | 与格林威治时间相差的小时数 |  - |        -         | -0700 |
+| P | 与格林威治时间相差的小时数，小时和分钟之间有冒号分隔 |  - |        -         | +07:00 |
+| T | 时区缩写 |  - |        -         | MST |
+| W | ISO8601 格式数字表示的年份中的第几周 |  - |       1-52       | 1 |
+| N | ISO8601 格式数字表示的星期中的第几天 |  1 |       1-7        | 1 |
+| L | 是否为闰年，如果是闰年为 1，否则为 0 |  1 |       0-1        | 0 |
+| U | 秒级时间戳 | 10 |        -         | 1611818268 |
+| u | 毫秒 | - |      1-999       | 999 |
+| w | 数字表示的周几 |  1 |       0-6        | 1 |
+| t | 月份中的总天数 |  2 |      28-31       | 31 |
+| z | 年份中的第几天 |  - |      1-365       | 2 |
+| e | 当前位置 |  - |        -         | America/New_York |
+| Q | 当前季节 |  1 |       1-4        | 1 |
+| C | 当前世纪数 |  - |       0-99       | 21 |
 
 #### 常见问题
 
 1、v1 和 v2 版本有什么区别？
 > v1 和 v2 版本的 API 没有任何区别，只是 `language.go` 里翻译资源文件内嵌的实现方式不同，v1 版本是由第三方扩展库 [packr](https://github.com/gobuffalo/packr)
 > 实现的，
-> v2 版本是由 `golang1.16` 后内置标准库 [embed](https://pkg.go.dev/embed) 实现的，推荐使用 v2 版本。
+> v2 版本是由 `golang1.16` 后内置标准库 [embed](https://pkg.go.dev/embed) 实现的。如果你的 go 版本大于 1.16推荐使用 v2 版本，否则必须使用 v1 版本。
 
 #### 参考项目
 
