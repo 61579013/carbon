@@ -1330,6 +1330,7 @@ The following languages are supported
 * [Ukrainian(uk)](./lang/uk.json "Ukrainian"): translated by [open-git](https://github.com/open-git "open-git")
 * [Romanian(ro)](./lang/ro.json "Romanian"): translated by [DrOctavius](https://github.com/DrOctavius "DrOctavius")
 * [Indonesian(id)](./lang/id.json "Indonesian"): translated by [justpoypoy](https://github.com/justpoypoy "justpoypoy")
+* [Italian(it)](./lang/it.json "Italian"): translated by [nicoloHevelop](https://github.com/nicoloHevelop "nicoloHevelop")
 
 The following methods are supported
 
@@ -1475,10 +1476,10 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 | N |                                         ISO8601 day of the week                                          |   1    |       1-7        | 1 |
 | L |                                         Whether it's a leap year                                         |   1    |       0-1        | 0 |
 | U |                                       Unix timestamp with seconds                                        |   10   |        -         | 1611818268 |
-| u |                                               Millisecond                                                |   -    |      0-999       | 999 |
+| u |                                               Millisecond                                                |   -    |      1-999       | 999 |
 | w |                                             Day of the week                                              |   1    |       0-6        | 1 |
 | t |                                         Total days of the month                                          |   2    |      28-31       | 31 |
-| z |                                             Day of the year                                              |   -    |      0-365       | 2 |
+| z |                                             Day of the year                                              |   -    |      1-365       | 2 |
 | e |                                                 Location                                                 |   -    |        -         | America/New_York |
 | Q |                                                 Quarter                                                  |   1    |       1-4        | 1 |
 | C |                                                 Century                                                  |   -    |       0-99       | 21 |

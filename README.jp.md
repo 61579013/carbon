@@ -1330,6 +1330,7 @@ fmt.Printf("%+v", *person)
 * [ウクライナ語(uk)](./lang/uk.json "ウクライナ語")：[open-git](https://github.com/open-git "open-git") から翻訳されます
 * [ルーマニア語(ro)](./lang/ro.json "ルーマニア語"): [DrOctavius](https://github.com/DrOctavius "DrOctavius") から翻訳されます
 * [インドネシア語(id)](./lang/id.json "インドネシア語"): [justpoypoy](https://github.com/justpoypoy "justpoypoy") から翻訳されます
+* [イタリア語(it)](./lang/it.json "イタリア語"): [nicoloHevelop](https://github.com/nicoloHevelop "nicoloHevelop") から翻訳されます
 
 現在サポートされている方法
 
@@ -1475,10 +1476,10 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 | N | ISO8601 フォーマットの数字は曜日の中の何日目を表しますか |  1  |       1-7        | 1 |
 | L | うるう年かどうか, うるう年が1であれば, 0です |  1  |       0-1        | 0 |
 | U | 秒タイムスタンプ | 10  |        -         | 1611818268 |
-| u | ミリ秒 |  -  |      0-999       | 999 |
+| u | ミリ秒 |  -  |      1-999       | 999 |
 | w | 数字の表示の曜日 |  1  |       0-6        | 1 |
 | t | 月の総日数 |  2  |      28-31       | 31 |
-| z | 年の中の何日目 |  -  |      0-365       | 2 |
+| z | 年の中の何日目 |  -  |      1-365       | 2 |
 | e | 位置 |  -  |        -         | America/New_York |
 | Q | 季節 |  1  |       1-4        | 1 |
 | C | 世紀 |  -  |       0-99       | 21 |

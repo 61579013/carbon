@@ -1333,6 +1333,7 @@ fmt.Printf("%+v", *person)
 * [乌克兰语(uk)](./lang/uk.json "乌克兰语"): 由 [open-git](https://github.com/open-git "open-git") 翻译
 * [罗马尼亚语(ro)](./lang/ro.json "罗马尼亚语"): 由 [DrOctavius](https://github.com/DrOctavius "DrOctavius") 翻译
 * [印度尼西亚语(id)](./lang/id.json "印度尼西亚语"): 由 [justpoypoy](https://github.com/justpoypoy "justpoypoy") 翻译
+* [意大利语(it)](./lang/it.json "意大利语"): 由 [nicoloHevelop](https://github.com/nicoloHevelop "nicoloHevelop") 翻译
 
 目前支持的方法有
 
@@ -1478,10 +1479,10 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 | N | ISO8601 格式数字表示的星期中的第几天 |  1 |       1-7        | 1 |
 | L | 是否为闰年，如果是闰年为 1，否则为 0 |  1 |       0-1        | 0 |
 | U | 秒级时间戳 | 10 |        -         | 1611818268 |
-| u | 毫秒 | - |      0-999       | 999 |
+| u | 毫秒 | - |      1-999       | 999 |
 | w | 数字表示的周几 |  1 |       0-6        | 1 |
 | t | 月份中的总天数 |  2 |      28-31       | 31 |
-| z | 年份中的第几天 |  - |      0-365       | 2 |
+| z | 年份中的第几天 |  - |      1-365       | 2 |
 | e | 当前位置 |  - |        -         | America/New_York |
 | Q | 当前季节 |  1 |       1-4        | 1 |
 | C | 当前世纪数 |  - |       0-99       | 21 |
