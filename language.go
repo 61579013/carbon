@@ -4,7 +4,6 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
-	"os"
 	"strconv"
 	"strings"
 )
@@ -13,13 +12,16 @@ import (
 var fs embed.FS
 
 var (
-	// defaultDir default directory
-	defaultDir = "lang"
+	// default directory
+	// 默认目录
+	defaultDir = "lang/"
 
-	// defaultLocale default locale
+	// default locale
+	// 默认区域
 	defaultLocale = "en"
 
-	// invalidLocaleError returns an invalid locale error.
+	// invalid locale error
+	// 无效的区域错误
 	invalidLocaleError = func(locale string) error {
 		return fmt.Errorf("invalid locale file %q, please make sure the json file exists and is valid", locale)
 	}
@@ -51,7 +53,7 @@ func (lang *Language) SetLocale(locale string) {
 		return
 	}
 	lang.locale = locale
-	fileName := lang.dir + string(os.PathSeparator) + locale + ".json"
+	fileName := lang.dir + locale + ".json"
 	bytes, err := fs.ReadFile(fileName)
 	if err != nil {
 		lang.Error = invalidLocaleError(fileName)
@@ -76,7 +78,7 @@ func (lang *Language) SetResources(resources map[string]string) {
 	}
 }
 
-// translate returns a translated string.
+// returns a translated string.
 // 翻译转换
 func (lang *Language) translate(unit string, value int64) string {
 	if len(lang.resources) == 0 {
