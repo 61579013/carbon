@@ -180,6 +180,10 @@ carbon.Parse("00:00:00").ToDateTimeString() // empty string
 carbon.Parse("0000-00-00").ToDateTimeString() // empty string
 carbon.Parse("0000-00-00 00:00:00").ToDateTimeString() // empty string
 
+carbon.Parse("now").ToString() // 2020-08-05 13:14:15 +0800 CST
+carbon.Parse("yesterday").ToString() // 2020-08-04 13:14:15 +0800 CST
+carbon.Parse("tomorrow").ToString() // 2020-08-06 13:14:15 +0800 CST
+
 carbon.Parse("2020").ToString() // 2020-01-01 00:00:00 +0800 CST
 carbon.Parse("2020-8").ToString() // 2020-08-01 00:00:00 +0800 CST
 carbon.Parse("2020-08").ToString() // 2020-08-01 00:00:00 +0800 CST
@@ -1332,16 +1336,16 @@ fmt.Printf("%+v", *person)
 
 The following languages are supported
 
+* [Simplified Chinese(zh-CN)](./lang/zh-CN.json "Simplified Chinese")：translated
+  by [gouguoyin](https://github.com/gouguoyin "gouguoyin")
+* [Traditional Chinese(zh-TW)](./lang/zh-TW.json "Traditional Chinese")：translated
+  by [gouguoyin](https://github.com/gouguoyin "gouguoyin")
 * [English(en)](./lang/en.json "English")：translated
   by [gouguoyin](https://github.com/gouguoyin "gouguoyin")
 * [Japanese(jp)](./lang/jp.json "Japanese")：translated
   by [gouguoyin](https://github.com/gouguoyin "gouguoyin")
 * [Korean(kr)](./lang/kr.json "Korean")：translated by [nannul](https://github.com/nannul "nannul")
 * [German(de)](./lang/de.json "German")：translated by [benzammour](https://github.com/benzammour "benzammour")
-* [Simplified Chinese(zh-CN)](./lang/zh-CN.json "Simplified Chinese")：translated
-  by [gouguoyin](https://github.com/gouguoyin "gouguoyin")
-* [Traditional Chinese(zh-TW)](./lang/zh-TW.json "Traditional Chinese")：translated
-  by [gouguoyin](https://github.com/gouguoyin "gouguoyin")
 * [Spanish(es)](./lang/es.json "Spanish")：translated by [hgisinger](https://github.com/hgisinger "hgisinger")
 * [Turkish(tr)](./lang/tr.json "Turkish"): translated by [emresenyuva](https://github.com/emresenyuva "emresenyuva")
 * [Portuguese(pt)](./lang/pt.json "Portuguese"): translated by [felipear89](https://github.com/felipear89 "felipear89")
