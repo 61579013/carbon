@@ -57,7 +57,6 @@ import (
 "gitee.com/golang-module/carbon"
 )
 ```
-
 > Please refer to <a href="#faq">FAQ</a> for the difference between v1 and v2
 
 #### Usage and example
@@ -1532,7 +1531,6 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 * [iamkun/dayjs](https://github.com/iamkun/dayjs)
 
 #### Contributors
-
 Thanks to all of the following who contributed to `Carbon`:
 
 <a href="https://github.com/golang-module/carbon/graphs/contributors"><img src="https://contrib.rocks/image?repo=golang-module/carbon&max=100&columns=16" /></a>
