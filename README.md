@@ -61,7 +61,7 @@ import (
 
 #### Usage and example
 
-> The default timezone is Local, assuming the current time is 2020-08-05 13:14:15 +0800 CST
+> The default timezone is Local, assuming the current time is 2020-08-05 13:14:15.999999999 +0800 CST
 
 ##### Yesterday, today and tomorrow
 
@@ -79,11 +79,11 @@ carbon.Now(Carbon.NewYork).ToDateTimeString() // 2020-08-05 14:14:15
 // Return timestamp with second of today
 carbon.Now().Timestamp() // 1596604455
 // Return timestamp with millisecond of today
-carbon.Now().TimestampMilli() // 1596604455000
+carbon.Now().TimestampMilli() // 1596604455999
 // Return timestamp with microsecond of today
-carbon.Now().TimestampMicro() // 1596604455000000
+carbon.Now().TimestampMicro() // 1596604455999999
 // Return timestamp with nanosecond of today
-carbon.Now().TimestampNano() // 1596604455000000000
+carbon.Now().TimestampNano() // 1596604455999999999
 
 // Return datetime of yesterday
 fmt.Sprintf("%s", carbon.Yesterday()) // 2020-08-04 13:14:15
@@ -100,11 +100,11 @@ carbon.Yesterday(Carbon.NewYork).ToDateTimeString() // 2020-08-04 14:14:15
 // Return timestamp with second of yesterday
 carbon.Yesterday().Timestamp() // 1596518055
 // Return timestamp with millisecond of yesterday
-carbon.Yesterday().TimestampMilli() // 1596518055000
+carbon.Yesterday().TimestampMilli() // 1596518055999
 // Return timestamp with microsecond of yesterday
-carbon.Yesterday().TimestampMicro() // 1596518055000000
+carbon.Yesterday().TimestampMicro() // 1596518055999999
 // Return timestamp with nanosecond of yesterday
-carbon.Yesterday().TimestampNano() // 1596518055000000000
+carbon.Yesterday().TimestampNano() // 1596518055999999999
 
 // Return datetime of tomorrow
 fmt.Sprintf("%s", carbon.Tomorrow()) // 2020-08-06 13:14:15
@@ -121,11 +121,11 @@ carbon.Tomorrow(Carbon.NewYork).ToDateTimeString() // 2020-08-06 14:14:15
 // Return timestamp with second of tomorrow
 carbon.Tomorrow().Timestamp() // 1596690855
 // Return timestamp with millisecond of tomorrow
-carbon.Tomorrow().TimestampMilli() // 1596690855000
+carbon.Tomorrow().TimestampMilli() // 1596690855999
 // Return timestamp with microsecond of tomorrow
-carbon.Tomorrow().TimestampMicro() // 1596690855000000
+carbon.Tomorrow().TimestampMicro() // 1596690855999999
 // Return timestamp with nanosecond of tomorrow
-carbon.Tomorrow().TimestampNano() // 1596690855000000000
+carbon.Tomorrow().TimestampNano() // 1596690855999999999
 ```
 
 ##### Create a Carbon instance
@@ -949,22 +949,22 @@ carbon.Parse("2002-12-31 13:14:15").Age() // 18
 ##### Output
 
 ```go
-// Output date and time format string
+// Output datetime format string
 carbon.Parse("2020-08-05 13:14:15").ToDateTimeString() // 2020-08-05 13:14:15
-// Output date and time with millisecond format string
+// Output datetime with millisecond format string
 carbon.Parse("2020-08-05T13:14:15.999999999+08:00").ToDateTimeMilliString() // 2020-08-05 13:14:15.999
-// Output date and time with microsecond format string
+// Output datetime with microsecond format string
 carbon.Parse("2020-08-05T13:14:15.999999999+08:00").ToDateTimeMicroString() // 2020-08-05 13:14:15.999999
-// Output date and time with nanosecond format string
+// Output datetime with nanosecond format string
 carbon.Parse("2020-08-05T13:14:15.999999999+08:00").ToDateTimeNanoString() // 2020-08-05 13:14:15.999999999
 
-// Output short date and time format string
+// Output short datetime format string
 carbon.Parse("2020-08-05T13:14:15.999999999+08:00").ToShortDateTimeString() // 20200805131415
-// Output short date and time with millisecond format string
+// Output short datetime with millisecond format string
 carbon.Parse("2020-08-05T13:14:15.999999999+08:00").ToShortDateTimeMilliString() // 20200805131415.999
-// Output short date and time with microsecond format string
+// Output short datetime with microsecond format string
 carbon.Parse("2020-08-05T13:14:15.999999999+08:00").ToShortDateTimeMicroString() // 20200805131415.999999
-// Output short date and time with nanosecond format string
+// Output short datetime with nanosecond format string
 carbon.Parse("2020-08-05T13:14:15.999999999+08:00").ToShortDateTimeNanoString() // 20200805131415.999999999
 
 // Output date format string
@@ -1057,7 +1057,7 @@ carbon.Parse("2020-08-05T13:14:15.999999999+08:00").ToRfc3339MicroString() // 20
 // Output RFC3339 with nanosecond format string
 carbon.Parse("2020-08-05T13:14:15.999999999+08:00").ToRfc3339NanoString() // 2020-08-05T13:14:15.999999999+08:00
 
-// Output date and time format string
+// Output datetime format string
 fmt.Sprintf("%s", carbon.Parse("2020-08-05 13:14:15")) // 2020-08-05 13:14:15
 
 // Output "2006-01-02 15:04:05.999999999 -0700 MST" format string
