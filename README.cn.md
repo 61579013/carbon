@@ -42,16 +42,12 @@ import (
 // 使用 github 库
 go get -u github.com/golang-module/carbon
 
-import (
-	"github.com/golang-module/carbon"
-)
+import "github.com/golang-module/carbon"
 
 // 使用 gitee 库
 go get -u gitee.com/golang-module/carbon
 
-import (
-	"gitee.com/golang-module/carbon"
-)
+import "gitee.com/golang-module/carbon"
 ```
 
 > v1 和 v2 版本区别请查阅 <a href="#常见问题">常见问题</a>
