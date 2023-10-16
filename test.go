@@ -8,6 +8,9 @@ func SetTestNow(carbon Carbon) Carbon {
 // SetTestNow sets a test Carbon instance (real or mock) to be returned when a "now" instance is created.
 func (c Carbon) SetTestNow(carbon Carbon) Carbon {
 	c.testNow = carbon.TimestampNano()
+	if carbon.loc != nil {
+		c.loc = carbon.loc
+	}
 	return c
 }
 
