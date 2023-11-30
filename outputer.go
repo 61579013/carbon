@@ -82,8 +82,8 @@ func (c Carbon) ToWeekString(timezone ...string) string {
 	}
 	if months, ok := c.lang.resources["weeks"]; ok {
 		slice := strings.Split(months, "|")
-		if len(slice) == 7 {
-			return slice[c.Week()]
+		if len(slice) == DaysPerWeek {
+			return slice[c.DayOfWeek()%DaysPerWeek]
 		}
 	}
 	return ""
@@ -103,8 +103,8 @@ func (c Carbon) ToShortWeekString(timezone ...string) string {
 	}
 	if months, ok := c.lang.resources["short_weeks"]; ok {
 		slice := strings.Split(months, "|")
-		if len(slice) == 7 {
-			return slice[c.Week()]
+		if len(slice) == DaysPerWeek {
+			return slice[c.DayOfWeek()%DaysPerWeek]
 		}
 	}
 	return ""

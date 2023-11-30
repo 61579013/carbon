@@ -1789,3 +1789,22 @@ func TestCarbon_ToStdTime(t *testing.T) {
 	actual := Now().ToStdTime().Format(DateTimeLayout)
 	assert.Equal(t, expected, actual)
 }
+
+// https://github.com/golang-module/carbon/issues/200
+func TestCarbon_Issue200(t *testing.T) {
+	assert := assert.New(t)
+
+	tests := []struct {
+		input                   Carbon
+		expectedWeekString      string
+		expectedShortWeekString string
+	}{
+		{Now().StartOfWeek(), "Sunday", "Sun"},
+		{Now().SetWeekStartsAt(Monday).StartOfWeek(), "Monday", "Mon"},
+		{Now().SetWeekStartsAt(Wednesday).StartOfWeek(), "Wednesday", "Wed"},
+	}
+	for index, test := range tests {
+		assert.Equal(test.expectedWeekString, test.input.ToWeekString(), "Current test index is "+strconv.Itoa(index))
+		assert.Equal(test.expectedShortWeekString, test.input.ToShortWeekString(), "Current test index is "+strconv.Itoa(index))
+	}
+}
