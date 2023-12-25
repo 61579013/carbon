@@ -61,6 +61,7 @@ func LoadTag(v interface{}) error {
 			continue
 		}
 		tag := field.Tag.Get("carbon")
+
 		if tag == "" {
 			tag = "layout:" + DateTimeLayout
 		}
