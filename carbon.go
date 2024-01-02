@@ -14,7 +14,7 @@ import (
 
 // Version current version
 // 当前版本号
-const Version = "2.3.1"
+const Version = "2.3.2"
 
 // timezone constants
 // 时区常量
@@ -57,6 +57,7 @@ const (
 	Seoul      = "Asia/Seoul"          // 首尔
 	Bangkok    = "Asia/Bangkok"        // 曼谷
 	Dubai      = "Asia/Dubai"          // 迪拜
+	India      = "Asia/Kolkata"        // 印度
 	NewYork    = "America/New_York"    // 纽约
 	LosAngeles = "America/Los_Angeles" // 洛杉矶
 	Chicago    = "America/Chicago"     // 芝加哥
@@ -244,9 +245,9 @@ const (
 // 定义 Carbon 结构体
 type Carbon struct {
 	time         time.Time
-	testNow      int64 // timestamp with nanosecond of test now time
-	tag          string
+	testNow      int64 // nanosecond timestamp of test now time
 	weekStartsAt time.Weekday
+	tag          tag
 	loc          *time.Location
 	lang         *Language
 	Error        error
