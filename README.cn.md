@@ -5,7 +5,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/golang-module/carbon/v2)](https://goreportcard.com/report/github.com/golang-module/carbon/v2)
 [![Go Coverage](https://codecov.io/gh/golang-module/carbon/branch/master/graph/badge.svg)](https://codecov.io/gh/golang-module/carbon)
 [![Goproxy.cn](https://goproxy.cn/stats/github.com/golang-module/carbon/badges/download-count.svg)](https://goproxy.cn)
-[![Carbon Doc](https://img.shields.io/badge/go.dev-reference-brightgreen?logo=go&logoColor=white&style=flat)](https://pkg.go.dev/github.com/golang-module/carbon)
+[![Carbon Doc](https://img.shields.io/badge/go.dev-reference-brightgreen?logo=go&logoColor=white&style=flat)](https://pkg.go.dev/github.com/golang-module/carbon/v2)
 [![License](https://img.shields.io/github/license/golang-module/carbon)](https://github.com/golang-module/carbon/blob/master/LICENSE)
 
 简体中文 | [English](README.md) | [日本語](README.jp.md)
@@ -1268,16 +1268,17 @@ type Person struct {
     Age  int    `json:"age"`
     
     Birthday1 Carbon `json:"birthday1"`
-    Birthday2 Carbon `json:"birthday2" carbon:"date" tz:"PRC"`
-    Birthday3 Carbon `json:"birthday3" carbon:"time" tz:"PRC"`
-    Birthday4 Carbon `json:"birthday4" carbon:"dateTime" tz:"PRC"`
+    Birthday2 Carbon `json:"birthday2" carbon:"type:date" tz:"PRC"`
+    Birthday3 Carbon `json:"birthday3" carbon:"type:time" tz:"PRC"`
+    Birthday4 Carbon `json:"birthday4" carbon:"type:dateTime" tz:"PRC"`
 
-    Birthday5 Carbon `json:"birthday5" carbon:"timestamp" tz:"PRC"`
-    Birthday6 Carbon `json:"birthday6" carbon:"timestampMilli" tz:"PRC"`
-    Birthday7 Carbon `json:"birthday7" carbon:"timestampMicro" tz:"PRC"`
-    Birthday8 Carbon `json:"birthday8" carbon:"timestampNano" tz:"PRC"`
+    Birthday5 Carbon `json:"birthday5" carbon:"type:timestamp" tz:"PRC"`
+    Birthday6 Carbon `json:"birthday6" carbon:"type:timestampMilli" tz:"PRC"`
+    Birthday7 Carbon `json:"birthday7" carbon:"type:timestampMicro" tz:"PRC"`
+    Birthday8 Carbon `json:"birthday8" carbon:"type:timestampNano" tz:"PRC"`
 }
 ```
+> 所有支持的 type 值请点击 <a href="https://github.com/golang-module/carbon/blob/master/tag.go#L24">这里</a> 查阅。
 
 或
 
@@ -1291,10 +1292,10 @@ type Person struct {
     Birthday3 Carbon `json:"birthday3" carbon:"layout:15:04:05" tz:"PRC"`
     Birthday4 Carbon `json:"birthday4" carbon:"layout:2006-01-02 15:04:05" tz:"PRC"`
 	
-    Birthday5 Carbon `json:"birthday5" carbon:"timestamp" tz:"PRC"`
-    Birthday6 Carbon `json:"birthday6" carbon:"timestampMilli" tz:"PRC"`
-    Birthday7 Carbon `json:"birthday7" carbon:"timestampMicro" tz:"PRC"`
-    Birthday8 Carbon `json:"birthday8" carbon:"timestampNano" tz:"PRC"`
+    Birthday5 Carbon `json:"birthday5" carbon:"type:timestamp" tz:"PRC"`
+    Birthday6 Carbon `json:"birthday6" carbon:"type:timestampMilli" tz:"PRC"`
+    Birthday7 Carbon `json:"birthday7" carbon:"type:timestampMicro" tz:"PRC"`
+    Birthday8 Carbon `json:"birthday8" carbon:"type:timestampNano" tz:"PRC"`
 }
 ```
 
@@ -1310,10 +1311,10 @@ type Person struct {
     Birthday3 Carbon `json:"birthday3" carbon:"format:H:i:s" tz:"PRC"`
     Birthday4 Carbon `json:"birthday4" carbon:"format:Y-m-d H:i:s" tz:"PRC"`
 
-    Birthday5 Carbon `json:"birthday5" carbon:"timestamp" tz:"PRC"`
-    Birthday6 Carbon `json:"birthday6" carbon:"timestampMilli" tz:"PRC"`
-    Birthday7 Carbon `json:"birthday7" carbon:"timestampMicro" tz:"PRC"`
-    Birthday8 Carbon `json:"birthday8" carbon:"timestampNano" tz:"PRC"`
+    Birthday5 Carbon `json:"birthday5" carbon:"type:timestamp" tz:"PRC"`
+    Birthday6 Carbon `json:"birthday6" carbon:"type:timestampMilli" tz:"PRC"`
+    Birthday7 Carbon `json:"birthday7" carbon:"type:timestampMicro" tz:"PRC"`
+    Birthday8 Carbon `json:"birthday8" carbon:"type:timestampNano" tz:"PRC"`
 }
 ```
 
@@ -1430,6 +1431,8 @@ fmt.Sprintf("%d", person.Birthday8) // 1596604455999999999
 * [瑞典语(se)](./lang/se.json "瑞典语"): 由 [jwanglof](https://github.com/jwanglof "jwanglof") 翻译
 * [伊朗语(fa)](./lang/fa.json "伊朗语"): 由 [erfanMomeniii](https://github.com/ErfanMomeniii "ErfanMomeniii") 翻译
 * [波兰语(nl)](./lang/nl.json "波兰语"): 由 [RemcoE33](https://github.com/RemcoE33 "RemcoE33") 翻译
+* [越南语(vi)](./lang/vi.json "越南语"): 由 [culy247](https://github.com/culy247 "culy247") 翻译
+* [印地语(hi)](./lang/hi.json "印地语"): 由 [chauhan17nitin](https://github.com/chauhan17nitin "chauhan17nitin") 翻译
 
 目前支持的方法有
 
@@ -1539,7 +1542,7 @@ c.Now().ToDateString() // 2020-08-05
 c.Now().IsSetTestNow() // true
 
 c.UnSetTestNow()
-c.Now().ToDateString() // 2023-12-2
+c.Now().ToDateString() // 2023-12-27
 c.Now().IsSetTestNow() // false
 ```
 
@@ -1553,7 +1556,6 @@ if c.Error != nil {
 	// 错误处理...
 	log.Fatal(c.Error)
 }
-fmt.Println(c.ToDateTimeString())
 // 输出
 invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for all valid timezones
 ```
@@ -1651,4 +1653,4 @@ COPY ./zoneinfo.zip /usr/local/go/lib/time/zoneinfo.zip
 
 `Carbon`已获取免费的 JetBrains 开源许可证，在此表示感谢
 
-<a href="https://www.jetbrains.com"><img src="https://raw.githubusercontent.com/panjf2000/illustrations/master/jetbrains/jetbrains-variant-4.png" height="100" alt="JetBrains"/></a>
+<a href="https://www.jetbrains.com"><img src="https://foruda.gitee.com/images/1704325523163241662/1bf21f86_544375.png" height="100" alt="JetBrains"/></a>

@@ -5,7 +5,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/golang-module/carbon/v2)](https://goreportcard.com/report/github.com/golang-module/carbon/v2)
 [![Go Coverage](https://codecov.io/gh/golang-module/carbon/branch/master/graph/badge.svg)](https://codecov.io/gh/golang-module/carbon)
 [![Goproxy.cn](https://goproxy.cn/stats/github.com/golang-module/carbon/badges/download-count.svg)](https://goproxy.cn)
-[![Carbon Doc](https://img.shields.io/badge/go.dev-reference-brightgreen?logo=go&logoColor=white&style=flat)](https://pkg.go.dev/github.com/golang-module/carbon)
+[![Carbon Doc](https://img.shields.io/badge/go.dev-reference-brightgreen?logo=go&logoColor=white&style=flat)](https://pkg.go.dev/github.com/golang-module/carbon/v2)
 [![License](https://img.shields.io/github/license/golang-module/carbon)](https://github.com/golang-module/carbon/blob/master/LICENSE)
 
 日本語 | [English](README.md) | [简体中文](README.cn.md)
@@ -1268,14 +1268,14 @@ type Person struct {
     Age  int    `json:"age"`
     
     Birthday1 Carbon `json:"birthday1"`
-    Birthday2 Carbon `json:"birthday2" carbon:"date" tz:"PRC"`
-    Birthday3 Carbon `json:"birthday3" carbon:"time" tz:"PRC"`
-    Birthday4 Carbon `json:"birthday4" carbon:"dateTime" tz:"PRC"`
+    Birthday2 Carbon `json:"birthday2" carbon:"type:date" tz:"PRC"`
+    Birthday3 Carbon `json:"birthday3" carbon:"type:time" tz:"PRC"`
+    Birthday4 Carbon `json:"birthday4" carbon:"type:dateTime" tz:"PRC"`
     
-    Birthday5 Carbon `json:"birthday5" carbon:"timestamp" tz:"PRC"`
-    Birthday6 Carbon `json:"birthday6" carbon:"timestampMilli" tz:"PRC"`
-    Birthday7 Carbon `json:"birthday7" carbon:"timestampMicro" tz:"PRC"`
-    Birthday8 Carbon `json:"birthday8" carbon:"timestampNano" tz:"PRC"`
+    Birthday5 Carbon `json:"birthday5" carbon:"type:timestamp" tz:"PRC"`
+    Birthday6 Carbon `json:"birthday6" carbon:"type:timestampMilli" tz:"PRC"`
+    Birthday7 Carbon `json:"birthday7" carbon:"type:timestampMicro" tz:"PRC"`
+    Birthday8 Carbon `json:"birthday8" carbon:"type:timestampNano" tz:"PRC"`
 }
 ```
 
@@ -1291,14 +1291,13 @@ type Person struct {
     Birthday3 Carbon `json:"birthday3" carbon:"layout:15:04:05" tz:"PRC"`
     Birthday4 Carbon `json:"birthday4" carbon:"layout:2006-01-02 15:04:05" tz:"PRC"`
     
-    Birthday5 Carbon `json:"birthday5" carbon:"timestamp" tz:"PRC"`
-    Birthday6 Carbon `json:"birthday6" carbon:"timestampMilli" tz:"PRC"`
-    Birthday7 Carbon `json:"birthday7" carbon:"timestampMicro" tz:"PRC"`
-    Birthday8 Carbon `json:"birthday8" carbon:"timestampNano" tz:"PRC"`
+    Birthday5 Carbon `json:"birthday5" carbon:"type:timestamp" tz:"PRC"`
+    Birthday6 Carbon `json:"birthday6" carbon:"type:timestampMilli" tz:"PRC"`
+    Birthday7 Carbon `json:"birthday7" carbon:"type:timestampMicro" tz:"PRC"`
+    Birthday8 Carbon `json:"birthday8" carbon:"type:timestampNano" tz:"PRC"`
 }
 ```
-
-または
+> サポートされているすべての type 値については、<a href="https://github.com/golang-module/carbon/blob/master/tag.go#L24">ここ</a>をクリックしてご覧ください。
 
 ```go
 type Person struct {
@@ -1310,10 +1309,10 @@ type Person struct {
     Birthday3 Carbon `json:"birthday3" carbon:"format:H:i:s" tz:"PRC"`
     Birthday4 Carbon `json:"birthday4" carbon:"format:Y-m-d H:i:s" tz:"PRC"`
     
-    Birthday5 Carbon `json:"birthday5" carbon:"timestamp" tz:"PRC"`
-    Birthday6 Carbon `json:"birthday6" carbon:"timestampMilli" tz:"PRC"`
-    Birthday7 Carbon `json:"birthday7" carbon:"timestampMicro" tz:"PRC"`
-    Birthday8 Carbon `json:"birthday8" carbon:"timestampNano" tz:"PRC"`
+    Birthday5 Carbon `json:"birthday5" carbon:"type:timestamp" tz:"PRC"`
+    Birthday6 Carbon `json:"birthday6" carbon:"type:timestampMilli" tz:"PRC"`
+    Birthday7 Carbon `json:"birthday7" carbon:"type:timestampMicro" tz:"PRC"`
+    Birthday8 Carbon `json:"birthday8" carbon:"type:timestampNano" tz:"PRC"`
 }
 ```
 
@@ -1426,7 +1425,9 @@ fmt.Sprintf("%d", person.Birthday8) // 1596604455999999999
 * [タイ語(th)](./lang/th.json "タイ語"): [izcream](https://github.com/izcream "izcream") から翻訳されます
 * [スウェーデン語(se)](./lang/se.json "スウェーデン語"):  [jwanglof](https://github.com/jwanglof "jwanglof") から翻訳されます
 * [イラン語(fa)](./lang/fa.json "イラン語"):  [Iranian](https://github.com/Iranian "Iranian") から翻訳されます
-* [ポーランド語(nl)](./lang/nl.json "ポーランド語"):  [RemcoE33](https://github.com/RemcoE33 "RemcoE33") から翻訳されます
+* [ポーランド語(nl)](./lang/nl.json "ポーランド語"): [RemcoE33](https://github.com/RemcoE33 "RemcoE33") から翻訳されます
+* [ベトナム語(vi)](./lang/vi.json "ベトナム語"): [culy247](https://github.com/culy247 "culy247") から翻訳されます
+* [ヒンディー語(hi)](./lang/hi.json "ヒンディー語"): [chauhan17nitin](https://github.com/chauhan17nitin "chauhan17nitin") から翻訳されます
 
 現在サポートされている方法
 
@@ -1536,7 +1537,7 @@ c.Now().ToDateString() // 2020-08-05
 c.Now().IsSetTestNow() // true
 
 c.UnSetTestNow()
-c.Now().ToDateString() // 2023-12-2
+c.Now().ToDateString() // 2023-12-27
 c.Now().IsSetTestNow() // false
 ```
 
@@ -1550,7 +1551,6 @@ if c.Error != nil {
     // エラー処理...
     log.Fatal(c.Error)
 }
-fmt.Println(c.ToDateTimeString())
 // 出力
 invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for all valid timezones
 ```
@@ -1630,4 +1630,4 @@ invalid timezone "xxx", please see the file "$GOROOT/lib/time/zoneinfo.zip" for 
 
 `Carbon` は無料の JetBrains オープンソースライセンスを取得しました，これに感謝します
 
-<a href="https://www.jetbrains.com"><img src="https://raw.githubusercontent.com/panjf2000/illustrations/master/jetbrains/jetbrains-variant-4.png" height="100" alt="JetBrains"/></a>
+<a href="https://www.jetbrains.com"><img src="https://foruda.gitee.com/images/1704325523163241662/1bf21f86_544375.png" height="100" alt="JetBrains"/></a>
