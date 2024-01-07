@@ -92,7 +92,7 @@ type tag struct {
 
 // SetTag sets tag.
 // 设置标签
-func (c Carbon) SetTag(tag tag) Carbon {
+func (c Carbon) SetTag(tag *tag) Carbon {
 	if c.Error != nil {
 		return c
 	}
@@ -103,12 +103,18 @@ func (c Carbon) SetTag(tag tag) Carbon {
 // parseTag parses tag.
 // 解析标签
 func (c Carbon) parseTag() (key, value, tz string) {
+	if c.tag == nil {
+		return "layout", defaultLayout, defaultTimezone
+	}
 	tz = strings.TrimSpace(c.tag.tz)
 	if tz == "" {
-		tz = c.Location()
+		tz = defaultTimezone
 	}
 	carbon := strings.TrimSpace(c.tag.carbon)
-	if carbon == "" || len(carbon) <= 7 {
+	if carbon == "" {
+		return "layout", defaultLayout, tz
+	}
+	if len(carbon) <= 7 {
 		return "", "", tz
 	}
 	key = strings.TrimSpace(carbon[:6])
@@ -130,31 +136,24 @@ func LoadTag(v interface{}) error {
 		if reflect.TypeOf(Carbon{}) != fieldValue.Type() {
 			continue
 		}
-
 		carbon := fieldType.Tag.Get("carbon")
-
 		if carbon == "" {
-			carbon = "layout:" + DateTimeLayout
+			carbon = "layout:" + defaultLayout
 		}
-
 		if strings.Contains(carbon, "type:") {
 			carbon = tagTypes[carbon[5:]]
 		}
-
 		if !strings.Contains(carbon, "layout:") && !strings.Contains(carbon, "format:") {
 			return invalidTagError(fieldType.Name)
 		}
-
 		tz := fieldType.Tag.Get("tz")
 		if tz == "" {
-			tz = Local
+			tz = defaultTimezone
 		}
-
-		params[0] = reflect.ValueOf(tag{
+		params[0] = reflect.ValueOf(&tag{
 			carbon: carbon,
 			tz:     tz,
 		})
-
 		fieldValue.Set(fieldValue.MethodByName("SetTag").Call(params)[0])
 	}
 	return nil

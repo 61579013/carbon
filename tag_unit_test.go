@@ -5,18 +5,26 @@ import (
 	"testing"
 )
 
-func TestCarbon_SetTag(t *testing.T) {
-	now := Now().SetTag(tag{
-		carbon: "datetime",
-		tz:     Local,
+func TestCarbon_parseTag(t *testing.T) {
+	now := Now().SetTag(&tag{
+		carbon: "",
 	})
-	assert.Nil(t, now.Error)
-	assert.Equal(t, "datetime", now.tag.carbon)
-	assert.Equal(t, Local, now.tag.tz)
+	key, value, tz := now.parseTag()
+	assert.Equal(t, "layout", key)
+	assert.Equal(t, DateTimeLayout, value)
+	assert.Equal(t, Local, tz)
+}
+
+func TestTag_SetTag(t *testing.T) {
+	c := NewCarbon().SetTag(&tag{
+		tz: PRC,
+	})
+	assert.Nil(t, c.Error)
+	assert.Equal(t, PRC, c.tag.tz)
 }
 
 func TestError_SetTag(t *testing.T) {
-	now := Now("xxx").SetTag(tag{
+	now := Now("xxx").SetTag(&tag{
 		carbon: "datetime",
 		tz:     Local,
 	})
