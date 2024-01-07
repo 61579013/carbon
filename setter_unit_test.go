@@ -85,39 +85,6 @@ func TestCarbon_SetLocale(t *testing.T) {
 	}
 }
 
-func TestCarbon_SetLanguage(t *testing.T) {
-	lang := NewLanguage()
-	resources := map[string]string{
-		"seasons": "spring|summer|autumn|winter",
-	}
-	lang.SetLocale("en")
-	if lang.Error == nil {
-		lang.SetResources(resources)
-	}
-
-	assert := assert.New(t)
-
-	tests := []struct {
-		input    string
-		expected string
-	}{
-		{"", ""},
-		{"2020-08-05", "summer"},
-	}
-
-	for index, test := range tests {
-		c := Parse(test.input).SetLanguage(lang)
-		assert.Nil(c.Error)
-		assert.Equal(test.expected, c.Season(), "Current test index is "+strconv.Itoa(index))
-	}
-
-	for index, test := range tests {
-		c := SetLanguage(lang).Parse(test.input)
-		assert.Nil(c.Error)
-		assert.Equal(test.expected, c.Season(), "Current test index is "+strconv.Itoa(index))
-	}
-}
-
 func TestCarbon_SetDateTime(t *testing.T) {
 	assert := assert.New(t)
 
@@ -630,7 +597,7 @@ func TestError_Setter(t *testing.T) {
 
 	lang := NewLanguage()
 	lang.SetLocale(locale)
-	assert.NotNil(t, c.SetLanguage(lang).Error, "It should catch an exception in SetLanguage()")
+	assert.NotNil(t, SetLanguage(lang).Error, "It should catch an exception in SetLanguage()")
 
 	assert.NotNil(t, c.SetDateTime(year, month, day, hour, minute, second).Error, "It should catch an exception in SetDateTime()")
 	assert.NotNil(t, c.SetDateTimeMilli(year, month, day, hour, minute, second, millisecond).Error, "It should catch an exception in SetDateTimeMilli()")

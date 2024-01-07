@@ -2,10 +2,10 @@ package carbon
 
 import "testing"
 
-func BenchmarkCarbon_SetTag(b *testing.B) {
+func BenchmarkTag_SetTag(b *testing.B) {
 	now := Now()
 	for n := 0; n < b.N; n++ {
-		now.SetTag(tag{
+		now.SetTag(&tag{
 			carbon: "datetime",
 			tz:     Local,
 		})
