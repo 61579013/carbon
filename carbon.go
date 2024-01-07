@@ -14,7 +14,7 @@ import (
 
 // Version current version
 // 当前版本号
-const Version = "2.3.3"
+const Version = "2.3.4"
 
 // timezone constants
 // 时区常量
@@ -247,7 +247,7 @@ type Carbon struct {
 	time         time.Time
 	testNow      int64 // nanosecond timestamp of test now time
 	weekStartsAt time.Weekday
-	tag          tag
+	tag          *tag
 	loc          *time.Location
 	lang         *Language
 	Error        error
@@ -256,7 +256,8 @@ type Carbon struct {
 // NewCarbon returns a new Carbon instance.
 // 初始化 Carbon 结构体
 func NewCarbon() Carbon {
-	c := Carbon{weekStartsAt: time.Sunday, loc: time.Local, lang: NewLanguage()}
+	c := Carbon{weekStartsAt: time.Sunday, lang: NewLanguage()}
+	c.loc, c.Error = getLocationByTimezone(defaultTimezone)
 	c.lang.rw.Lock()
 	defer c.lang.rw.Unlock()
 	return c
