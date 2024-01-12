@@ -12,7 +12,7 @@ English | [简体中文](README.cn.md) | [日本語](README.jp.md)
 
 #### Introduction
 
-A simple, semantic and developer-friendly golang package for datetime, has been included
+A simple, semantic and developer-friendly golang package for time, has been included
 by [awesome-go](https://github.com/avelino/awesome-go#date-and-time "awesome-go")
 
 [github.com/golang-module/carbon](https://github.com/golang-module/carbon "github.com/golang-module/carbon")
@@ -55,17 +55,18 @@ import "gitee.com/golang-module/carbon"
 
 > Assuming the current time is 2020-08-05 13:14:15.999999999 +0800 CST
 
-##### Set global default
+##### Set default values (globally effective)
 
 ```go
 carbon.SetDefault(carbon.Default{
-  Layout: carbon.RFC3339Layout,
-  Timezone: carbon.PRC,
+  Layout: carbon.DateTimeLayout,
+  Timezone: carbon.Local,
+  WeekStartsAt: carbon.Sunday,
   Locale: "en",
 })
 ```
 
-> If not set, the default layout is `2006-01-02 15:04:05`, the default timezone is `Local`, and the default language locale is `en`
+> If not set, the default layout is `2006-01-02 15:04:05`, the default timezone is `Local`, the default week start date is `Sunday` and the default language locale is `en`
 
 ##### Yesterday, today and tomorrow
 
@@ -552,20 +553,21 @@ carbon.Parse("2022-08-05 13:14:15").DiffForHumans(carbon.Now()) // 2 years after
 ##### Extremum
 
 ```go
-c := carbon.Parse("2023-04-01")
-c0 := carbon.Parse("xxx")
+c0 := carbon.Parse("2023-04-01")
 c1 := carbon.Parse("2023-03-28")
 c2 := carbon.Parse("2023-04-16")
-
 // Return the closest Carbon instance
-c.Closest(c0, c1) // c1
-c.Closest(c0, c2) // c2
-c.Closest(c1, c2) // c1
-
+c0.Closest(c1, c2) // c1
 // Return the farthest Carbon instance
-c.Farthest(c0, c1) // c1
-c.Farthest(c0, c2) // c2
-c.Farthest(c1, c2) // c2
+c0.Farthest(c1, c2) // c2
+
+yesterday := carbon.Yesterday()
+today     := carbon.Now()
+tomorrow  := carbon.Tomorrow()
+// Return the maximum Carbon instance
+carbon.Max(yesterday, today, tomorrow) // tomorrow
+// Return the minimum Carbon instance
+carbon.Min(yesterday, today, tomorrow) // yesterday
 ```
 
 ##### Comparison
@@ -609,6 +611,17 @@ carbon.Parse("00:00:00").IsInvalid() // true
 carbon.Parse("2020-08-05 00:00:00").IsInvalid() // false
 carbon.Parse("2020-08-05").IsInvalid() // false
 carbon.Parse("2020-08-05").SetTimezone("xxx").IsInvalid() // true
+
+// Whether is before noon
+carbon.Parse("2020-08-05 00:00:00").IsAM() // true
+carbon.Parse("2020-08-05 08:00:00").IsAM() // true
+carbon.Parse("2020-08-05 12:00:00").IsAM() // false
+carbon.Parse("2020-08-05 13:00:00").IsAM() // false
+// Whether is after noon
+carbon.Parse("2020-08-05 00:00:00").IsPM() // false
+carbon.Parse("2020-08-05 08:00:00").IsPM() // false
+carbon.Parse("2020-08-05 12:00:00").IsPM() // true
+carbon.Parse("2020-08-05 13:00:00").IsPM() // true
 
 // Whether is now time
 carbon.Now().IsNow() // true
@@ -1471,7 +1484,7 @@ The following methods are supported
 
 * `Constellation()`：get constellation name, like `Aries`
 * `Season()`：get season name, like `Spring`
-* `DiffForHumans()`：get the difference with human-readable format, like `1 year from now`
+* `DiffForHumans()`：get the difference with human-readable format string, like `1 year from now`
 * `ToMonthString()`：output month format string, like `January`
 * `ToShortMonthString()`：output short month format string, like `Jan`
 * `ToWeekString()`：output week format string, like `Sunday`

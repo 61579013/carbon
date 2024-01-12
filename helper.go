@@ -5,6 +5,18 @@ import (
 	"time"
 )
 
+// week days
+// 工作日
+var weekdays = map[string]time.Weekday{
+	Monday:    time.Monday,
+	Tuesday:   time.Tuesday,
+	Wednesday: time.Wednesday,
+	Thursday:  time.Thursday,
+	Friday:    time.Friday,
+	Saturday:  time.Saturday,
+	Sunday:    time.Sunday,
+}
+
 // common formatting symbols
 // 常规格式化符号
 var formats = map[byte]string{
